@@ -4,8 +4,6 @@
  */
 package tiralabra.algoritmit;
 
-import tiralabra.algoritmit.ReitinEtsija;
-import java.util.ArrayList;
 import tiralabra.tietorakenteet.verkko.Verkko;
 
 /**

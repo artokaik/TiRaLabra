@@ -4,7 +4,6 @@
  */
 package tiralabra.algoritmit;
 
-import java.util.ArrayList;
 import tiralabra.tietorakenteet.pino.Pino;
 import tiralabra.tietorakenteet.verkko.Verkko;
 
