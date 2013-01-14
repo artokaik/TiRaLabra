@@ -18,7 +18,9 @@ import static org.junit.Assert.*;
  */
 public class VerkkoTest {
     private Verkko arvottuVerkko;
-    private int solmujenMaara;
+    private int arvottujenSolmujenMaara;
+    private Verkko rakennettuVerkko;
+    private int rakennetunVerkonKoko;
     
     public VerkkoTest() {
     }
@@ -27,8 +29,11 @@ public class VerkkoTest {
     
     @Before
     public void setUp() {
-        solmujenMaara = 10;
-        arvottuVerkko = Verkko.arvoUusi(solmujenMaara, 10, 10);
+        arvottujenSolmujenMaara = 10;
+        arvottuVerkko = Verkko.arvoUusi(arvottujenSolmujenMaara, 10, 10);
+        rakennetunVerkonKoko = 10;
+        rakennettuVerkko = new Verkko(rakennetunVerkonKoko);
+        
     }
     
    @Test
@@ -54,7 +59,7 @@ public class VerkkoTest {
    }
    @Test
    public void verkkoOikeanKokoinen(){
-       assertEquals(solmujenMaara, arvottuVerkko.getVerkko().length);
+       assertEquals(arvottujenSolmujenMaara, arvottuVerkko.getVerkko().length);
    }
    
    @Test
@@ -66,5 +71,16 @@ public class VerkkoTest {
                }
            }
        }
+   }
+   
+   @Test
+   public void verkonRakennusToimii(){
+       assertFalse(rakennettuVerkko.onkoTaysi());
+       assertTrue(rakennettuVerkko.lisaaSolmu(new Solmu(0,0)));
+       for (int i = 1; i < rakennetunVerkonKoko; i++) {
+           assertTrue(rakennettuVerkko.lisaaSolmu(new Solmu(i,i)));           
+       }
+       assertFalse(rakennettuVerkko.lisaaSolmu(new Solmu(3,4)));
+       assertTrue(rakennettuVerkko.onkoTaysi());   
    }
 }
