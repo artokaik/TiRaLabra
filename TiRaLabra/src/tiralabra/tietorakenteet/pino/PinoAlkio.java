@@ -14,6 +14,7 @@ public class PinoAlkio<S> {
     
     protected PinoAlkio(S sisalto){
         this.sisalto = sisalto;
+        seuraava = null;
     }
 
     protected void setSisalto(S sisalto) {

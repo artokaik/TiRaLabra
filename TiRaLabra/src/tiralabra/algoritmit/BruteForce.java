@@ -4,8 +4,8 @@
  */
 package tiralabra.algoritmit;
 
-import tiralabra.algoritmit.ReitinEtsija;
 import java.util.ArrayList;
+import tiralabra.tietorakenteet.pino.Pino;
 import tiralabra.tietorakenteet.verkko.Verkko;
 
 /**
@@ -22,12 +22,12 @@ public class BruteForce extends ReitinEtsija {
     }   
     
     public void etsiLyhinReitti(){
-        etsiReittia(0, 0, new ArrayList<Integer>());
+        etsiReittia(0, 0, new Pino<Integer>());
     }
     // Oletus, että alussa lähdettiin solmusta 0 (Lähtösolmulla ei bruteforcessa ole väliä koska lopussa palataan aina lähtösolmuun)
     
-    private void etsiReittia(int lahtoSolmu, double matka, ArrayList<Integer> reitti){
-        reitti.add(lahtoSolmu);
+    private void etsiReittia(int lahtoSolmu, double matka, Pino<Integer> reitti){
+        reitti.push(lahtoSolmu);
         kayty[lahtoSolmu]=true;
         for (int i = 0; i < verkko.length; i++) {
             if(!kayty[i]){
@@ -43,10 +43,10 @@ public class BruteForce extends ReitinEtsija {
             matka += verkko[lahtoSolmu][0];
             if(matka<lyhimmanReitinPituus){
                 lyhimmanReitinPituus = matka;
-                lyhinReitti = (ArrayList<Integer>) reitti.clone();
+                lyhinReitti = (Pino<Integer>) reitti.clone();
             }
         }
-        reitti.remove(reitti.size()-1);       
+        reitti.pop();       
     }   
     
 }

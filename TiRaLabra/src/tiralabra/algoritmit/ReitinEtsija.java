@@ -5,6 +5,7 @@
 package tiralabra.algoritmit;
 
 import java.util.ArrayList;
+import tiralabra.tietorakenteet.pino.Pino;
 import tiralabra.tietorakenteet.verkko.Verkko;
 
 /**
@@ -15,13 +16,13 @@ public abstract class ReitinEtsija {
 
     protected double[][] verkko;
     protected double lyhimmanReitinPituus;
-    protected ArrayList<Integer> lyhinReitti;
+    protected Pino<Integer> lyhinReitti;
     protected boolean[] kayty;
 
     public ReitinEtsija(Verkko verkko) {
         this.verkko = verkko.getVerkko();
         lyhimmanReitinPituus = Double.MAX_VALUE;
-        lyhinReitti = new ArrayList<Integer>();
+        lyhinReitti = new Pino<Integer>();
         this.kayty = new boolean[verkko.getSolmut().length];
     }
 
@@ -38,7 +39,7 @@ public abstract class ReitinEtsija {
         return lyhimmanReitinPituus;
     }
 
-    public ArrayList<Integer> getLyhinReitti() {
+    public Pino<Integer> getLyhinReitti() {
         return lyhinReitti;
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Arto-MacBook-Air.local" name="tiralabra.tietorakenteet.verkko.VerkkoTest" tests="6" time="0.126" timestamp="2013-01-14T17:58:59">
+<testsuite errors="0" failures="0" hostname="Arto-MacBook-Air.local" name="tiralabra.tietorakenteet.verkko.VerkkoTest" tests="6" time="0.111" timestamp="2013-01-14T19:45:06">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="FI" />
@@ -63,7 +63,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tiralabra.tietorakenteet.verkko.VerkkoTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/test/results/TEST-tiralabra.tietorakenteet.verkko.VerkkoTest.xml crashfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junitvmwatcher2577822104407725886.properties propsfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junit3276049099227386180.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tiralabra.tietorakenteet.verkko.VerkkoTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/test/results/TEST-tiralabra.tietorakenteet.verkko.VerkkoTest.xml crashfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junitvmwatcher7462357023954628256.properties propsfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junit1018094382613033631.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -421,12 +421,12 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit" />
   </properties>
-  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="verkkoSymmetrinen" time="0.004" />
-  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="kaikkiSolmutMukana" time="0.0" />
-  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="verkkoOikeanKokoinen" time="0.0" />
+  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="verkkoOikeanKokoinen" time="0.003" />
   <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="verkkoonTallennettuSuorinReitti" time="0.001" />
-  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="verkonRakennusToimii" time="0.001" />
+  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="verkonRakennusToimii" time="0.0" />
   <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="kaikkiVerkkotaulukonRivitYhtaPitkiaKuinVerkkoTaulukko" time="0.001" />
+  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="verkkoSymmetrinen" time="0.001" />
+  <testcase classname="tiralabra.tietorakenteet.verkko.VerkkoTest" name="kaikkiSolmutMukana" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -19,14 +19,14 @@ public class Pino<S> {
     }
 
     public void push(S sisalto) {
-           PinoAlkio uusiAlkio = new PinoAlkio<S>(sisalto);
-           uusiAlkio.setSeuraava(eka);
-           eka = uusiAlkio;
-           koko++;
+        PinoAlkio uusiAlkio = new PinoAlkio<S>(sisalto);
+        uusiAlkio.setSeuraava(eka);
+        eka = uusiAlkio;
+        koko++;
     }
-    
-    public S pop(){
-        if(empty()){
+
+    public S pop() {
+        if (empty()) {
             return null;
         }
         S palautus = (S) eka.getSisalto();
@@ -34,11 +34,44 @@ public class Pino<S> {
         koko--;
         return palautus;
     }
-    
-    public boolean empty(){
-        if(koko==0){
+
+    public boolean empty() {
+        if (koko == 0) {
             return true;
         }
         return false;
+    }
+
+    public Pino<S> clone() {
+        if(this.empty()){
+            return new Pino<S>();
+        }
+        PinoAlkio x = this.eka;
+        PinoAlkio y = new PinoAlkio(x.getSisalto());
+        Pino<S> uusiPino = new Pino<S>();
+        uusiPino.eka = y;
+        uusiPino.koko++;
+        while (x.getSeuraava() != null) {
+            PinoAlkio z = new PinoAlkio(x.getSeuraava().getSisalto());
+            y.setSeuraava(z);
+            x = x.getSeuraava();
+            y = z;
+            uusiPino.koko++;
+        }
+        return uusiPino;
+    }
+
+    @Override
+    public String toString() {
+        if (this.empty()) {
+            return "[]";
+        }
+        String tuloste = "[";
+        Pino<S> uusiPino = this.clone();
+        while (uusiPino.eka.getSeuraava() != null) {
+            tuloste += uusiPino.pop() + ", ";
+        }
+        tuloste += uusiPino.pop() + "]";
+        return tuloste;
     }
 }

@@ -25,10 +25,10 @@ public class AinaLahimpaan extends ReitinEtsija{
     public void aloitaEtsiminen(int alku){
         int x = alku;
         kayty[alku]=true;
-        lyhinReitti.add(x);
+        lyhinReitti.push(x);
         while(!this.ollaankoReitinLopussa()){
             int y = etsiLahinKaymaton(x);
-            lyhinReitti.add(y);
+            lyhinReitti.push(y);
             this.lyhimmanReitinPituus += verkko[x][y];
             kayty[y]=true;
             x=y;
