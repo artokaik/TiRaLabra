@@ -20,7 +20,7 @@ public class TiRaLabra {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Verkko verkko = Verkko.arvoUusi(12, 10, 10);
+        Verkko verkko = Verkko.arvoUusi(10, 10, 10);
         BruteForce laskija = new BruteForce(verkko);
         long alku = System.currentTimeMillis();
         laskija.etsiLyhinReitti();
