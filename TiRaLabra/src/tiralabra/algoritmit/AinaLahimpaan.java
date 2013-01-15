@@ -8,7 +8,9 @@ import tiralabra.tietorakenteet.pino.Pino;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
- * AinaLahimpaan on ajassa n^3 toimiva algoritmi.
+ * AinaLahimpaan on ajassa n^3 toimiva algoritmi. Se käy verkon läpi n kertaa aloittaen kerran jokaisesta solmusta. Jokaisella läpikäynnillä se menee aina solmusta lähimpään viereiseen solmuun kunnes verkko on käyty läpi. Tämän jälkeen se tallettaa reitin ja sen pituuden jos se on lyhyempi kuin tähän astisista reiteistä paras.
+ * 
+ * Jos metodin etsiLyhinReitti() sijaan kutsutaan metodia aloitaEtsiminen(int alku), toimii algoritmi ajassa n^2, mutta ratkaisu on keskimäärin huonompi (eikä koskaan parempi).
  * @author Arto
  */
 public class AinaLahimpaan extends ReitinEtsija{
