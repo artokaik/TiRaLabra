@@ -10,24 +10,40 @@ import java.util.Random;
  *
  * @author Arto
  */
-public class Solmu {
+public class XYKoordinaatti {
 
     private double x;
     private double y;
 
-    public Solmu(double x, double y) {
+    /**
+     *
+     * @param x
+     * @param y
+     */
+    public XYKoordinaatti(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public static Solmu arvoUusi(double maxX, double maxY) {
+    /**
+     *
+     * @param maxX
+     * @param maxY
+     * @return
+     */
+    public static XYKoordinaatti arvoUusi(double maxX, double maxY) {
         Random random = new Random();
         double x = random.nextDouble() * maxX;
         double y = random.nextDouble() * maxY;
-        return new Solmu(x, y);
+        return new XYKoordinaatti(x, y);
     }
     
-    public double laskeEtaisyys(Solmu node){
+    /**
+     *
+     * @param node
+     * @return
+     */
+    public double laskeEtaisyys(XYKoordinaatti node){
         double x1 = this.getX();
         double y1 = this.getY();
         double x2 = node.getX();
@@ -35,10 +51,18 @@ public class Solmu {
         return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
     }
 
+    /**
+     *
+     * @return
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getY() {
         return y;
     }

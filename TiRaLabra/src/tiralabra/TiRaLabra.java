@@ -6,8 +6,9 @@ package tiralabra;
 
 import tiralabra.algoritmit.AinaLahimpaan;
 import tiralabra.algoritmit.BranchAndBound;
-import tiralabra.tietorakenteet.verkko.Verkko;
 import tiralabra.algoritmit.BruteForce;
+import tiralabra.algoritmit.SatunnainenReitti;
+import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
  *
@@ -20,12 +21,16 @@ public class TiRaLabra {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        long alku;
+        long loppu;
 
-        Verkko verkko = Verkko.arvoUusi(12, 10, 10);
+        XYVerkko verkko = XYVerkko.arvoUusi(10, 10, 10);
+        
         BruteForce laskija = new BruteForce(verkko);
-        long alku = System.currentTimeMillis();
+        alku = System.currentTimeMillis();
         laskija.etsiLyhinReitti();
-        long loppu = System.currentTimeMillis();
+        loppu = System.currentTimeMillis();
         System.out.println("BruteForce:");
         System.out.println("reitti: " + laskija.getLyhinReitti());
         System.out.println("reitin pituus: " + laskija.getLyhimmanReitinPituus());
@@ -44,11 +49,20 @@ public class TiRaLabra {
 
         AinaLahimpaan lahin = new AinaLahimpaan(verkko);
         alku = System.currentTimeMillis();
-        lahin.aloitaEtsiminen(0);
+        lahin.etsiLyhinReitti();
         loppu = System.currentTimeMillis();
         System.out.println("Aina lähimpään seuraavaksi:");
         System.out.println("reitti: " + lahin.getLyhinReitti());
         System.out.println("reitin pituus: " + lahin.getLyhimmanReitinPituus());
+        System.out.println(loppu-alku);
+        
+        SatunnainenReitti satunnainen = new SatunnainenReitti(verkko);
+        alku = System.currentTimeMillis();
+        satunnainen.etsiLyhinReitti();
+        loppu = System.currentTimeMillis();
+        System.out.println("Aina lähimpään seuraavaksi:");
+        System.out.println("reitti: " + satunnainen.getLyhinReitti());
+        System.out.println("reitin pituus: " + satunnainen.getLyhimmanReitinPituus());
         System.out.println(loppu-alku);
 
     }

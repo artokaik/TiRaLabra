@@ -5,20 +5,31 @@
 package tiralabra.algoritmit;
 
 import tiralabra.tietorakenteet.pino.Pino;
-import tiralabra.tietorakenteet.verkko.Verkko;
+import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
  *
  * @author Arto
  */
 public class BranchAndBound extends ReitinEtsija {
+    private int[][] lahimmat;
 
-    public BranchAndBound(Verkko verkko) {
-        super(verkko);
+    
+    /**
+     *
+     * @param xYVerkko
+     */
+    public BranchAndBound(XYVerkko xYVerkko) {
+        super(xYVerkko);
+        lahimmat = new int[verkko.length][verkko.length];
 
     }
 
+    /**
+     *
+     */
     public void etsiLyhinReitti() {
+
         etsiReittia(0, 0, new Pino<Integer>());
     }
     // Oletus, että alussa lähdettiin solmusta 0 (Lähtösolmulla ei bruteforcessa ole väliä koska lopussa palataan aina lähtösolmuun)

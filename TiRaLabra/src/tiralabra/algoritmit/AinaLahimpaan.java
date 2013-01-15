@@ -4,36 +4,68 @@
  */
 package tiralabra.algoritmit;
 
-import tiralabra.tietorakenteet.verkko.Verkko;
+import tiralabra.tietorakenteet.pino.Pino;
+import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
- *
+ * AinaLahimpaan on ajassa n^3 toimiva algoritmi.
  * @author Arto
  */
 public class AinaLahimpaan extends ReitinEtsija{
+  
 
-    
-
-    public AinaLahimpaan(Verkko verkko) {
+    /**
+     *
+     * @param verkko
+     */
+    public AinaLahimpaan(XYVerkko verkko) {
         super(verkko);
-        this.lyhimmanReitinPituus=0;
+
+    }
+    
+    /**
+     * 
+     */
+    public void etsiLyhinReitti(){
+        for (int i = 0; i < verkko.length; i++) {
+            aloitaEtsiminen(i);           
+        }
     }
 
     
+    /**
+     * Aloittaa parametrina annetusta solmusta ja menee aina lähimpään solmuun kunnes kaikissa solmuissa on käyty. Jos tämä reitti on lyhyempi kuin lyhin tähän mennessä löydetty, metodi päivittää lyhimmän reitin. Rungon aikavaatimus O(n) (while-loopissa käydään läpi kaikki solmut), ja while loopin sisällä olevan hakumetodin aikavaatimus myös O(n). Näin ollen koko metodin aikavaatimus on O(n^2) 
+     * @param alku
+     */
     public void aloitaEtsiminen(int alku){
         int x = alku;
         kayty[alku]=true;
-        lyhinReitti.push(x);
+        Pino<Integer> lyhytReitti = new Pino<Integer>();
+        double lyhyenReitinPituus = 0;
+        lyhytReitti.push(x);
         while(!this.ollaankoReitinLopussa()){
             int y = etsiLahinKaymaton(x);
-            lyhinReitti.push(y);
-            this.lyhimmanReitinPituus += verkko[x][y];
+            lyhytReitti.push(y);
+            lyhyenReitinPituus += verkko[x][y];
             kayty[y]=true;
             x=y;
         }
-        lyhimmanReitinPituus += verkko[x][alku];
+        lyhyenReitinPituus += verkko[x][alku];
+        if(lyhyenReitinPituus<this.lyhimmanReitinPituus){
+            this.lyhimmanReitinPituus=lyhyenReitinPituus;
+            this.lyhinReitti=lyhytReitti;
+        }
+        for (int i = 0; i < kayty.length; i++) {
+            kayty[i]=false;
+            
+        }
     }
-
+    
+   /**
+     * Etsi parametrina annetun solmun lähimmän sellaisen naapurin, jossa ei ole vielä käyty. Aikavaatimus O(n).
+     * @param solmu
+     */
+    
     private int etsiLahinKaymaton(int solmu) {
         double pieninValimatka = Double.MAX_VALUE;
         int lahin = Integer.MAX_VALUE;

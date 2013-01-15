@@ -8,15 +8,15 @@ package tiralabra.tietorakenteet.verkko;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import tiralabra.tietorakenteet.verkko.Solmu;
+import tiralabra.tietorakenteet.verkko.XYKoordinaatti;
 
 /**
  *
  * @author Arto
  */
 public class SolmuTest {
-    private Solmu solmu1;
-    private Solmu solmu2;
+    private XYKoordinaatti solmu1;
+    private XYKoordinaatti solmu2;
     
     public SolmuTest() {
     }
@@ -24,8 +24,8 @@ public class SolmuTest {
     
     @Before
     public void setUp() {
-        solmu1 = new Solmu(2,2);
-        solmu2 = new Solmu(5,6);
+        solmu1 = new XYKoordinaatti(2,2);
+        solmu2 = new XYKoordinaatti(5,6);
     }
     
     @Test

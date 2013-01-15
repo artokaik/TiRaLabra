@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  * @author Arto
  */
 public class VerkkoTest {
-    private Verkko arvottuVerkko;
+    private XYVerkko arvottuVerkko;
     private int arvottujenSolmujenMaara;
-    private Verkko rakennettuVerkko;
+    private XYVerkko rakennettuVerkko;
     private int rakennetunVerkonKoko;
     
     public VerkkoTest() {
@@ -30,9 +30,9 @@ public class VerkkoTest {
     @Before
     public void setUp() {
         arvottujenSolmujenMaara = 10;
-        arvottuVerkko = Verkko.arvoUusi(arvottujenSolmujenMaara, 10, 10);
+        arvottuVerkko = XYVerkko.arvoUusi(arvottujenSolmujenMaara, 10, 10);
         rakennetunVerkonKoko = 10;
-        rakennettuVerkko = new Verkko(rakennetunVerkonKoko);
+        rakennettuVerkko = new XYVerkko(rakennetunVerkonKoko);
         
     }
     
@@ -76,11 +76,11 @@ public class VerkkoTest {
    @Test
    public void verkonRakennusToimii(){
        assertFalse(rakennettuVerkko.onkoTaysi());
-       assertTrue(rakennettuVerkko.lisaaSolmu(new Solmu(0,0)));
+       assertTrue(rakennettuVerkko.lisaaSolmu(new XYKoordinaatti(0,0)));
        for (int i = 1; i < rakennetunVerkonKoko; i++) {
-           assertTrue(rakennettuVerkko.lisaaSolmu(new Solmu(i,i)));           
+           assertTrue(rakennettuVerkko.lisaaSolmu(new XYKoordinaatti(i,i)));           
        }
-       assertFalse(rakennettuVerkko.lisaaSolmu(new Solmu(3,4)));
+       assertFalse(rakennettuVerkko.lisaaSolmu(new XYKoordinaatti(3,4)));
        assertTrue(rakennettuVerkko.onkoTaysi());   
    }
 }

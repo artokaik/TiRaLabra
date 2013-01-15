@@ -5,7 +5,7 @@
 package tiralabra.algoritmit;
 
 import tiralabra.tietorakenteet.pino.Pino;
-import tiralabra.tietorakenteet.verkko.Verkko;
+import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
  *
@@ -15,11 +15,18 @@ public class BruteForce extends ReitinEtsija {
 
 
     
-    public BruteForce(Verkko verkko){
+    /**
+     *
+     * @param verkko
+     */
+    public BruteForce(XYVerkko verkko){
         super(verkko);
             
     }   
     
+    /**
+     *
+     */
     public void etsiLyhinReitti(){
         etsiReittia(0, 0, new Pino<Integer>());
     }

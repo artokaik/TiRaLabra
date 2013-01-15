@@ -5,7 +5,8 @@
 package tiralabra.algoritmit;
 
 import tiralabra.tietorakenteet.pino.Pino;
-import tiralabra.tietorakenteet.verkko.Verkko;
+import tiralabra.tietorakenteet.verkko.XYKoordinaatti;
+import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
  *
@@ -13,18 +14,43 @@ import tiralabra.tietorakenteet.verkko.Verkko;
  */
 public abstract class ReitinEtsija {
 
+    /**
+     *
+     */
     protected double[][] verkko;
+    /**
+     *
+     */
+    protected XYKoordinaatti[] solmut;
+    /**
+     *
+     */
     protected double lyhimmanReitinPituus;
+    /**
+     *
+     */
     protected Pino<Integer> lyhinReitti;
+    /**
+     *
+     */
     protected boolean[] kayty;
 
-    public ReitinEtsija(Verkko verkko) {
+    /**
+     *
+     * @param verkko
+     */
+    public ReitinEtsija(XYVerkko verkko) {
         this.verkko = verkko.getVerkko();
         lyhimmanReitinPituus = Double.MAX_VALUE;
         lyhinReitti = new Pino<Integer>();
         this.kayty = new boolean[verkko.getSolmut().length];
+        this.solmut = solmut;
     }
 
+    /**
+     *
+     * @return
+     */
     protected boolean ollaankoReitinLopussa() {
         for (int i = 0; i < kayty.length; i++) {
             if (!kayty[i]) {
@@ -34,10 +60,18 @@ public abstract class ReitinEtsija {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getLyhimmanReitinPituus() {
         return lyhimmanReitinPituus;
     }
 
+    /**
+     *
+     * @return
+     */
     public Pino<Integer> getLyhinReitti() {
         return lyhinReitti;
     }
