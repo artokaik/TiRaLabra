@@ -83,4 +83,5 @@ public class VerkkoTest {
        assertFalse(rakennettuVerkko.lisaaSolmu(new XYKoordinaatti(3,4)));
        assertTrue(rakennettuVerkko.onkoTaysi());   
    }
+   
 }

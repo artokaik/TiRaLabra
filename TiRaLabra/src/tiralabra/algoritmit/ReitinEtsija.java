@@ -44,7 +44,7 @@ public abstract class ReitinEtsija {
         lyhimmanReitinPituus = Double.MAX_VALUE;
         lyhinReitti = new Pino<Integer>();
         this.kayty = new boolean[verkko.getSolmut().length];
-        this.solmut = solmut;
+        this.solmut = verkko.getSolmut();
     }
 
     /**
@@ -58,6 +58,22 @@ public abstract class ReitinEtsija {
             }
         }
         return true;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public double[][] getVerkko() {
+        return verkko;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public XYKoordinaatti[] getSolmut() {
+        return solmut;
     }
 
     /**
