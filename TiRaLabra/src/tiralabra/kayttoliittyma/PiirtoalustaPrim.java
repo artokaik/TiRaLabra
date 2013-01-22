@@ -37,7 +37,7 @@ public class PiirtoalustaPrim extends JPanel {
         for (int i = 0; i < hakija.getSolmut().length; i++) {
             XYKoordinaatti solmu = hakija.getSolmut()[i];
             if(i==0){
-            graphics.fillOval((int) (solmu.getX()) - 3, (int) (solmu.getY()) - 3, 6, 6);
+            graphics.fillOval((int) (solmu.getX()) - 4, (int) (solmu.getY()) - 4, 8, 8);
             } else {
                 graphics.fillOval((int) (solmu.getX()) - 2, (int) (solmu.getY()) - 2, 4, 4);
             }

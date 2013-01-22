@@ -8,6 +8,7 @@ import tiralabra.kayttoliittyma.Kayttis;
 import tiralabra.algoritmit.AinaLahimpaan;
 import tiralabra.algoritmit.BranchAndBound;
 import tiralabra.algoritmit.BruteForce;
+import tiralabra.algoritmit.KarpHeld;
 import tiralabra.algoritmit.SatunnainenReitti;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
@@ -22,32 +23,32 @@ public class TiRaLabra {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         Kayttis kayttis = new Kayttis();
         kayttis.run();
 //        long alku;
 //        long loppu;
 //
 //        XYVerkko verkko = XYVerkko.arvoUusi(12, 10, 10);
-        
-//        BruteForce laskija = new BruteForce(verkko);
+//
+//        KarpHeld karpheld = new KarpHeld(verkko);
 //        alku = System.currentTimeMillis();
-//        laskija.etsiLyhinReitti();
+//        karpheld.etsiLyhinReitti();
 //        loppu = System.currentTimeMillis();
-//        System.out.println("BruteForce:");
-//        System.out.println("reitti: " + laskija.getLyhinReitti());
-//        System.out.println("reitin pituus: " + laskija.getLyhimmanReitinPituus());
+//        System.out.println("Held-Karp:");
+//        System.out.println("reitti: " + karpheld.getLyhinReitti());
+//        System.out.println("reitin pituus: " + karpheld.getLyhimmanReitinPituus());
 //        System.out.println(loppu - alku);
 //        System.out.println("");
-        
+//
 //        BranchAndBound BAB = new BranchAndBound(verkko);
 //        alku = System.currentTimeMillis();
 //        BAB.etsiLyhinReitti();
 //        loppu = System.currentTimeMillis();
 //        System.out.println("Branch and bound:");
 //        System.out.println("reitti: " + BAB.getLyhinReitti());
-//        System.out.println("reitin pituus: " +BAB.getLyhimmanReitinPituus());
-//        System.out.println(loppu-alku);
+//        System.out.println("reitin pituus: " + BAB.getLyhimmanReitinPituus());
+//        System.out.println(loppu - alku);
 //        System.out.println("");
 //
 //        AinaLahimpaan lahin = new AinaLahimpaan(verkko);
@@ -57,17 +58,20 @@ public class TiRaLabra {
 //        System.out.println("Aina lähimpään seuraavaksi:");
 //        System.out.println("reitti: " + lahin.getLyhinReitti());
 //        System.out.println("reitin pituus: " + lahin.getLyhimmanReitinPituus());
-//        System.out.println(loppu-alku);
+//        System.out.println(loppu - alku);
 //        System.out.println("");
-//        
-//        SatunnainenReitti satunnainen = new SatunnainenReitti(verkko);
+
+
+
+        //        BruteForce laskija = new BruteForce(verkko);
 //        alku = System.currentTimeMillis();
-//        satunnainen.etsiLyhinReitti();
+//        laskija.etsiLyhinReitti();
 //        loppu = System.currentTimeMillis();
-//        System.out.println("Satunnainen reitti:");
-//        System.out.println("reitti: " + satunnainen.getLyhinReitti());
-//        System.out.println("reitin pituus: " + satunnainen.getLyhimmanReitinPituus());
-//        System.out.println(loppu-alku);
+//        System.out.println("BruteForce:");
+//        System.out.println("reitti: " + laskija.getLyhinReitti());
+//        System.out.println("reitin pituus: " + laskija.getLyhimmanReitinPituus());
+//        System.out.println(loppu - alku);
+//        System.out.println("");
 
     }
 }

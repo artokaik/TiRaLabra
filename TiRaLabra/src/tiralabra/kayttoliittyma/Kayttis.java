@@ -8,6 +8,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import tiralabra.algoritmit.AinaLahimpaan;
 import tiralabra.algoritmit.BranchAndBound;
@@ -42,12 +43,20 @@ public class Kayttis implements Runnable {
         container.setLayout(new GridLayout(1,2));
         int leveys = 500;
         int korkeus = 500;
-        XYVerkko verkko = XYVerkko.arvoUusi(13, leveys, korkeus);
+        XYVerkko verkko = XYVerkko.arvoUusi(12, leveys, korkeus);
+        
         BranchAndBound hakija1 = new BranchAndBound(verkko);
         hakija1.etsiLyhinReitti();
-        KarpHeld hakija2 = new KarpHeld(verkko);
-        hakija2.etsiLyhinReitti();
         container.add(new Piirtoalusta(hakija1, leveys, korkeus));
-        container.add(new PiirtoalustaPrim(hakija2, leveys, korkeus));
+        
+        KarpHeld hakija2 = new KarpHeld(verkko);
+        hakija2.etsiLyhinReitti();        
+        if(hakija2.isValmis()){
+            container.add(new Piirtoalusta(hakija2, leveys, korkeus));
+        }else{
+            String teksti = "Minimi: "+(int)hakija2.getMinimi();
+            container.add(new JLabel(teksti));
+        }
+        
     }
 }
