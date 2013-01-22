@@ -4,7 +4,6 @@
  */
 package tiralabra.kayttoliittyma;
 
-import tiralabra.kayttoliittyma.Piirtoalusta;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -12,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import tiralabra.algoritmit.AinaLahimpaan;
 import tiralabra.algoritmit.BranchAndBound;
+import tiralabra.algoritmit.KarpHeld;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
@@ -45,9 +45,9 @@ public class Kayttis implements Runnable {
         XYVerkko verkko = XYVerkko.arvoUusi(13, leveys, korkeus);
         BranchAndBound hakija1 = new BranchAndBound(verkko);
         hakija1.etsiLyhinReitti();
-        AinaLahimpaan hakija2 = new AinaLahimpaan(verkko);
+        KarpHeld hakija2 = new KarpHeld(verkko);
         hakija2.etsiLyhinReitti();
         container.add(new Piirtoalusta(hakija1, leveys, korkeus));
-        container.add(new Piirtoalusta(hakija2, leveys, korkeus));
+        container.add(new PiirtoalustaPrim(hakija2, leveys, korkeus));
     }
 }
