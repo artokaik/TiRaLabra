@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import tiralabra.algoritmit.AinaLahimpaan;
 import tiralabra.algoritmit.BranchAndBound;
+import tiralabra.algoritmit.BruteForce;
 import tiralabra.algoritmit.KarpHeld;
+import tiralabra.algoritmit.SatunnainenReitti;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
@@ -43,7 +45,7 @@ public class Kayttis implements Runnable {
         container.setLayout(new GridLayout(1,2));
         int leveys = 500;
         int korkeus = 500;
-        XYVerkko verkko = XYVerkko.arvoUusi(40, leveys, korkeus);
+        XYVerkko verkko = XYVerkko.arvoUusi(30, leveys, korkeus);
         
         AinaLahimpaan hakija1 = new AinaLahimpaan(verkko);
         hakija1.etsiLyhinReitti();
