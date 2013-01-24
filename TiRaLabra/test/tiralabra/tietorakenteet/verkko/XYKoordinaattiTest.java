@@ -14,11 +14,11 @@ import tiralabra.tietorakenteet.verkko.XYKoordinaatti;
  *
  * @author Arto
  */
-public class SolmuTest {
+public class XYKoordinaattiTest {
     private XYKoordinaatti solmu1;
     private XYKoordinaatti solmu2;
     
-    public SolmuTest() {
+    public XYKoordinaattiTest() {
     }
     
     

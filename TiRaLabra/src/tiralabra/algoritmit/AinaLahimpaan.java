@@ -17,7 +17,7 @@ public class AinaLahimpaan extends ReitinEtsija{
   
 
     /**
-     *
+     * 
      * @param verkko
      */
     public AinaLahimpaan(XYVerkko verkko) {

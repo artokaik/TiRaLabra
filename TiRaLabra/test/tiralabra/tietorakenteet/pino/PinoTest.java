@@ -87,5 +87,12 @@ public class PinoTest {
         assertFalse(uusiPino.empty());
         assertEquals("eka", uusiPino.pop());
         assertTrue(uusiPino.empty());
+        
+        assertFalse(stringPino.empty());
+        assertEquals("kolmas", stringPino.pop());
+        assertEquals("toka", stringPino.pop());
+        assertFalse(stringPino.empty());
+        assertEquals("eka", stringPino.pop());
+        assertTrue(stringPino.empty());
     }
 }

@@ -58,7 +58,7 @@ public class Pino<S> {
         return false;
     }
     
-    @Override
+    
     public Pino<S> clone() {
         if(this.empty()){
             return new Pino<S>();

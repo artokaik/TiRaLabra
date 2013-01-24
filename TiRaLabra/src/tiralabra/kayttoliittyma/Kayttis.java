@@ -43,9 +43,9 @@ public class Kayttis implements Runnable {
         container.setLayout(new GridLayout(1,2));
         int leveys = 500;
         int korkeus = 500;
-        XYVerkko verkko = XYVerkko.arvoUusi(12, leveys, korkeus);
+        XYVerkko verkko = XYVerkko.arvoUusi(40, leveys, korkeus);
         
-        BranchAndBound hakija1 = new BranchAndBound(verkko);
+        AinaLahimpaan hakija1 = new AinaLahimpaan(verkko);
         hakija1.etsiLyhinReitti();
         container.add(new Piirtoalusta(hakija1, leveys, korkeus));
         

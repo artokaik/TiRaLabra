@@ -10,6 +10,11 @@ import tiralabra.tietorakenteet.verkko.XYKoordinaatti;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
+ * Karp-Held heuristiikka on pienimpiin virittäviin l-puihin perustuva
+ * heuristiikka. Se löytää optimaalisen reitin melko usein, mutta ei kuitenkaan
+ * aina. Mikäli se ei löydä optimaalista reittiä, se pystyy antamaan hyvin
+ * lähellä totuutta olevan arvion lyhimmän reitin pituudesta.
+ *
  *
  * @author Arto
  */
@@ -34,24 +39,50 @@ public class KarpHeld extends ReitinEtsija {
         minimi = 0;
     }
 
+    /**
+     * 1. Asetetaan β(v) ← 0 kaikille pisteille v. 
+     * 
+     * 2. Asetetaanα′(u,v)←α(u,v)+β(u)+β(v)kaikilleviivoille(u,v). 
+     * 
+     * 3. Etsitään minimaalinen virittävä 1-puu S′ valepainoja α′(u,v) käyttäen. Jos
+     * tällaista ei löydy, ei myöskään Hamiltonin piiriä löydy ja voidaan
+     * lopettaa. 
+     * 
+     * 4. Jos S′ on piiri, niin tulostetaan minimaalinen Hamiltonin
+     * piiri H = S′ ja lopetetaan. 
+     * 
+     * 5. Jos S′ ei ole piiri ja S′:sta laskettu alaraja on kasvanut K iteraatiokierroksen aikana, niin asetetaan β(v) ←
+     * β(v) + dS′ (v) − 2 jokaiselle pisteelle v ja mennään kohtaan 2. (K on
+     * etukäteen kiinnitetty iteraatiokierrosten maksimimäärä.) 
+     * 
+     * 6. Jos S′:sta laskettu alaraja ei ole kasvanut K:n iteraatiokierroksen aikana,
+     * lopetetaan ja tulostetaan ko. alaraja.
+     *
+     * Palauttaa true jos lyhin reitti löytyy, muuten false.
+     * 
+     * @return
+     */
+
+
     public boolean etsiLyhinReitti() {
         int n = 0;
         double alaraja = 0;
-        while (n < 1000000) {
-            paivitaValepainot();
-            Prim prim = new Prim(valepainot);
+        while (n < 100000) { // Testataan, onko alaraja kasvanut K iteraatiokierroksen aikana (K=1000000)
+            paivitaValepainot(); //2
+            Prim prim = new Prim(valepainot); //3
             asteet = new int[solmut.length];
             virittavaPuu = prim.lTree(0);
             paivitaAsteet();
             double uusiAlaraja = laskeAlaraja();
-            if (onkoPiiri()) {
+            if (onkoPiiri()) { //4
                 rakennaPino();
                 valmis = true;
                 return true;
             } else if (alaraja < uusiAlaraja) {
                 alaraja = uusiAlaraja;
+                paivitaSolmupainot();
                 n = 0;
-            } else {
+            } else { //5
                 paivitaSolmupainot();
                 n++;
             }
@@ -130,14 +161,26 @@ public class KarpHeld extends ReitinEtsija {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean[][] getVirittavaPuu() {
         return virittavaPuu;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isValmis() {
         return valmis;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getMinimi() {
         return minimi;
     }
