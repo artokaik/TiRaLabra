@@ -42,7 +42,7 @@ public class PiirtoalustaPrim extends JPanel {
                 graphics.fillOval((int) (solmu.getX()) - 2, (int) (solmu.getY()) - 2, 4, 4);
             }
         }
-
+        
         for (int i = 0; i < hakija.getSolmut().length; i++) {
             for (int j = 0; j < hakija.getSolmut().length; j++) {
                 if(hakija.getVirittavaPuu()[i][j]){

@@ -67,7 +67,7 @@ public class KarpHeld extends ReitinEtsija {
     public boolean etsiLyhinReitti() {
         int n = 0;
         double alaraja = 0;
-        while (n < 100000) { // Testataan, onko alaraja kasvanut K iteraatiokierroksen aikana (K=1000000)
+        while (n < 1000000) { // Testataan, onko alaraja kasvanut K iteraatiokierroksen aikana (K=1000000)
             paivitaValepainot(); //2
             Prim prim = new Prim(valepainot); //3
             asteet = new int[solmut.length];

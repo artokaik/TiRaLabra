@@ -45,7 +45,7 @@ public class Kayttis implements Runnable {
         container.setLayout(new GridLayout(1,2));
         int leveys = 500;
         int korkeus = 500;
-        XYVerkko verkko = XYVerkko.arvoUusi(30, leveys, korkeus);
+        XYVerkko verkko = XYVerkko.arvoUusi(20, leveys, korkeus);
         
         AinaLahimpaan hakija1 = new AinaLahimpaan(verkko);
         hakija1.etsiLyhinReitti();
@@ -56,8 +56,9 @@ public class Kayttis implements Runnable {
         if(hakija2.isValmis()){
             container.add(new Piirtoalusta(hakija2, leveys, korkeus));
         }else{
-            String teksti = "Minimi: "+(int)hakija2.getMinimi();
-            container.add(new JLabel(teksti));
+            container.add(new PiirtoalustaPrim(hakija2, leveys, korkeus));
+//            String teksti = "Minimi: "+(int)hakija2.getMinimi();
+//            container.add(new JLabel(teksti));
         }
         
     }
