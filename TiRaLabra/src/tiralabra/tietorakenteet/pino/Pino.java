@@ -5,36 +5,33 @@
 package tiralabra.tietorakenteet.pino;
 
 /**
- *
+ * Pino on yksinkertainen tietorakenne, johon voi tallettaa mitä tahansa olioita. Pinoon voi ajassa O(1) lisätä uuden olion (push) tai ottaa pois sinne viimeksi lisätyn objektin (pop). Jokainen olio on tallennettu omaan pinoalkioonsa ja Pino tuntee päällimmäisen pinoalkion (oliomuuttuja "eka").
  * @param <S> 
  * @author Arto
  */
 public class Pino<S> {
 
     private PinoAlkio eka;
-    private int koko;
-
+    
     /**
      *
      */
     public Pino() {
         eka = null;
-        koko = 0;
     }
 
     /**
-     *
+     * Lisää alkion pinon päälle.
      * @param sisalto
      */
     public void push(S sisalto) {
         PinoAlkio uusiAlkio = new PinoAlkio<S>(sisalto);
         uusiAlkio.setSeuraava(eka);
         eka = uusiAlkio;
-        koko++;
     }
 
     /**
-     *
+     * Palauttaa pinon päällimmäisen alkion.
      * @return
      */
     public S pop() {
@@ -43,22 +40,21 @@ public class Pino<S> {
         }
         S palautus = (S) eka.getSisalto();
         eka = eka.getSeuraava();
-        koko--;
         return palautus;
     }
 
     /**
-     *
+     * Palauttaa true jos Pino on tyhjä, muuten false;
      * @return
      */
     public boolean empty() {
-        if (koko == 0) {
+        if (eka == null) {
             return true;
         }
         return false;
     }
     
-    
+    @Override
     public Pino<S> clone() {
         if(this.empty()){
             return new Pino<S>();
@@ -67,16 +63,15 @@ public class Pino<S> {
         PinoAlkio y = new PinoAlkio(x.getSisalto());
         Pino<S> uusiPino = new Pino<S>();
         uusiPino.eka = y;
-        uusiPino.koko++;
         while (x.getSeuraava() != null) {
             PinoAlkio z = new PinoAlkio(x.getSeuraava().getSisalto());
             y.setSeuraava(z);
             x = x.getSeuraava();
             y = z;
-            uusiPino.koko++;
         }
         return uusiPino;
     }
+    
 
     @Override
     public String toString() {

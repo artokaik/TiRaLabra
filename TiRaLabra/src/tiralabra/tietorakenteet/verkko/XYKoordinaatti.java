@@ -7,7 +7,7 @@ package tiralabra.tietorakenteet.verkko;
 import java.util.Random;
 
 /**
- *
+ * XY-koordinaatti on piste xy-koordinaatistossa. Muuttujina x:n ja y:n arvot. 
  * @author Arto
  */
 public class XYKoordinaatti {
@@ -26,7 +26,7 @@ public class XYKoordinaatti {
     }
 
     /**
-     *
+     * Arpoo uuden koordinaatin väliltä 0-maxX,0-maxY.
      * @param maxX
      * @param maxY
      * @return
@@ -39,7 +39,7 @@ public class XYKoordinaatti {
     }
     
     /**
-     *
+     * Laskee koordinaatin etäisyyden parametrina annettuun koordinaattiin.
      * @param node
      * @return
      */

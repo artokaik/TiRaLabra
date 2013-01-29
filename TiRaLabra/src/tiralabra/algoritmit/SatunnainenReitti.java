@@ -17,6 +17,10 @@ public class SatunnainenReitti extends ReitinEtsija{
         super(xyverkko);
     }
     
+    /**
+     * Laskee reitin, joka käy solmut läpi siinä järjestyksessä jossa ne on tallennettu verkkoon.
+     */
+    
     public void etsiLyhinReitti(){
         lyhimmanReitinPituus=0;
         lyhinReitti.push(0);

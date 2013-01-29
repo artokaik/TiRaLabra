@@ -40,30 +40,29 @@ public class KarpHeld extends ReitinEtsija {
     }
 
     /**
-     * 1. Asetetaan β(v) ← 0 kaikille pisteille v. 
-     * 
-     * 2. Asetetaanα′(u,v)←α(u,v)+β(u)+β(v)kaikilleviivoille(u,v). 
-     * 
-     * 3. Etsitään minimaalinen virittävä 1-puu S′ valepainoja α′(u,v) käyttäen. Jos
-     * tällaista ei löydy, ei myöskään Hamiltonin piiriä löydy ja voidaan
-     * lopettaa. 
-     * 
-     * 4. Jos S′ on piiri, niin tulostetaan minimaalinen Hamiltonin
-     * piiri H = S′ ja lopetetaan. 
-     * 
-     * 5. Jos S′ ei ole piiri ja S′:sta laskettu alaraja on kasvanut K iteraatiokierroksen aikana, niin asetetaan β(v) ←
-     * β(v) + dS′ (v) − 2 jokaiselle pisteelle v ja mennään kohtaan 2. (K on
-     * etukäteen kiinnitetty iteraatiokierrosten maksimimäärä.) 
-     * 
-     * 6. Jos S′:sta laskettu alaraja ei ole kasvanut K:n iteraatiokierroksen aikana,
-     * lopetetaan ja tulostetaan ko. alaraja.
+     * 1. Asetetaan β(v) ← 0 kaikille pisteille v.
+     *
+     * 2. Asetetaanα′(u,v)←α(u,v)+β(u)+β(v)kaikilleviivoille(u,v).
+     *
+     * 3. Etsitään minimaalinen virittävä 1-puu S′ valepainoja α′(u,v) käyttäen.
+     * Jos tällaista ei löydy, ei myöskään Hamiltonin piiriä löydy ja voidaan
+     * lopettaa.
+     *
+     * 4. Jos S′ on piiri, niin tulostetaan minimaalinen Hamiltonin piiri H = S′
+     * ja lopetetaan.
+     *
+     * 5. Jos S′ ei ole piiri ja S′:sta laskettu alaraja on kasvanut K
+     * iteraatiokierroksen aikana, niin asetetaan β(v) ← β(v) + dS′ (v) − 2
+     * jokaiselle pisteelle v ja mennään kohtaan 2. (K on etukäteen kiinnitetty
+     * iteraatiokierrosten maksimimäärä.)
+     *
+     * 6. Jos S′:sta laskettu alaraja ei ole kasvanut K:n iteraatiokierroksen
+     * aikana, lopetetaan ja tulostetaan ko. alaraja.
      *
      * Palauttaa true jos lyhin reitti löytyy, muuten false.
-     * 
+     *
      * @return
      */
-
-
     public boolean etsiLyhinReitti() {
         int n = 0;
         double alaraja = 0;
@@ -91,12 +90,14 @@ public class KarpHeld extends ReitinEtsija {
         return false;
     }
 
+    // Päivittää laskennalliset solmupainot.
     private void paivitaSolmupainot() {
         for (int i = 0; i < solmupainot.length; i++) {
             solmupainot[i] = solmupainot[i] + asteet[i] - 2;
         }
     }
 
+    // Rakentaa lyhimmästä reitistä pinon ja tallentaa sen lyhinReitti-muuttujaan. Näin tuloste saadaan samalla tavalla kuin muista algoritmeista.
     private void rakennaPino() {
         this.lyhimmanReitinPituus = 0;
         int v = 0;
@@ -118,6 +119,7 @@ public class KarpHeld extends ReitinEtsija {
         this.lyhimmanReitinPituus += verkko[v][0];
     }
 
+    // laskee ja päivittää alarajan lyhimmän reitin pituudelle.
     private double laskeAlaraja() {
         double alaraja = 0;
         for (int i = 0; i < verkko.length; i++) {
@@ -133,6 +135,7 @@ public class KarpHeld extends ReitinEtsija {
         return alaraja;
     }
 
+    // laskee onko virittävä l-puu piiri vai ei (virittävä l-puu on piiri täsmälleen silloin jos kaikkien solmujen asteluku on 2)
     private boolean onkoPiiri() {
         for (int i = 0; i < asteet.length; i++) {
             if (asteet[i] != 2) {
@@ -141,6 +144,7 @@ public class KarpHeld extends ReitinEtsija {
         }
         return true;
     }
+// Päivittää kaarien valepainot
 
     private void paivitaValepainot() {
         for (int i = 0; i < valepainot.length; i++) {
@@ -149,6 +153,7 @@ public class KarpHeld extends ReitinEtsija {
             }
         }
     }
+//päivittää solmujen asteet virittävässä l-puussa.
 
     private void paivitaAsteet() {
         for (int i = 0; i < solmut.length; i++) {

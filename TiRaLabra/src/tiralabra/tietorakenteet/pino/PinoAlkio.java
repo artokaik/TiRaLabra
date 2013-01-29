@@ -5,7 +5,7 @@
 package tiralabra.tietorakenteet.pino;
 
 /**
- *
+ * Pinoalkio on Pinoon tallennettava olio, joka tietää siihen tallennetun olion sekä sitä seuraavan alkion pinossa.
  * @param <S> 
  * @author Arto
  */

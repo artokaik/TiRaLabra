@@ -58,8 +58,7 @@ public class AinaLahimpaan extends ReitinEtsija{
             this.lyhinReitti=lyhytReitti;
         }
         for (int i = 0; i < kayty.length; i++) {
-            kayty[i]=false;
-            
+            kayty[i]=false;         
         }
     }
     

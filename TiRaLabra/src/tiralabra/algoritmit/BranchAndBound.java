@@ -8,6 +8,8 @@ import tiralabra.tietorakenteet.pino.Pino;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
+ * BranchAndBOund etsii lyhimmän reitin hieman nopeammin kuin BruteForce, mutta
+ * kuitenkin hitaasti. Saa parametrinaan verkon, josta lyhin reitti etsitään.
  *
  * @author Arto
  */
@@ -26,14 +28,16 @@ public class BranchAndBound extends ReitinEtsija {
     }
 
     /**
-     * Metodi käy rekursion avulla järjestyksessä läpi kaikki mahdolliset reitit, mutta lopettaa reitin tutkimisen aina jos se on pidempi kuin lyhin jo löytynyt reitti.
+     * Metodi käy rekursion avulla järjestyksessä läpi kaikki mahdolliset
+     * reitit, mutta lopettaa reitin tutkimisen aina jos se on pidempi kuin
+     * lyhin jo löytynyt reitti.
      */
     public void etsiLyhinReitti() {
 
         etsiReittia(0, 0, new Pino<Integer>());
     }
-    
 
+    //Etsii lyhimmän reitin aloittaen parametrina annetusta solmusta. Alussa matka=0 ja reitti on tyhjä pino, mutta molemmat päivittyvät myöhemmin kun metodi kutsuu itseään rekursiivisesti.
     private void etsiReittia(int lahtoSolmu, double matka, Pino<Integer> reitti) {
         reitti.push(lahtoSolmu);
         kayty[lahtoSolmu] = true;
@@ -59,7 +63,7 @@ public class BranchAndBound extends ReitinEtsija {
             }
 
         }
-        
+
         reitti.pop();
 
     }

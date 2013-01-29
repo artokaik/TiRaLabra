@@ -9,29 +9,28 @@ import tiralabra.tietorakenteet.verkko.XYKoordinaatti;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
- *
- * @author Arto
+ * ReitinEtsija on abstrakti luokka, jonka kaikki algoritmit toteuttavat. ReitinEtsijan muuttujista  * @author Arto
  */
 public abstract class ReitinEtsija {
 
     /**
-     *
+     * verkko kertoo solmujen väliset etäisyydet 
      */
     protected double[][] verkko;
     /**
-     *
+     *solmut on lista solmuista
      */
     protected XYKoordinaatti[] solmut;
     /**
-     *
+     * lyhimmanReitinPituus on lyhimman löydetyn reitin pituus
      */
     protected double lyhimmanReitinPituus;
     /**
-     *
+     * lyhinReitti on lyhin löydetty reitti 
      */
     protected Pino<Integer> lyhinReitti;
     /**
-     *
+     * kayty-lista kertoo onko solmussa jo käyty
      */
     protected boolean[] kayty;
 
@@ -48,7 +47,7 @@ public abstract class ReitinEtsija {
     }
 
     /**
-     *
+     * Palauttaa true jos kaikissa solmuissa on käyty. Muuten palauttaa false
      * @return
      */
     protected boolean ollaankoReitinLopussa() {
@@ -61,7 +60,7 @@ public abstract class ReitinEtsija {
     }
 
     /**
-     *
+     * 
      * @return
      */
     public double[][] getVerkko() {
