@@ -10,7 +10,7 @@ import tiralabra.tietorakenteet.verkko.XYKoordinaatti;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
- *
+ * AntSystem simuloi muurahaisten toimintaa etsiessään lyhintä Hamiltonin kierrosta verkosta. Yksi "muurahainen" kerrallaan lähtee etsimään lyhintä reittiä. "Muurahainen" valitsee seuraavan käymättömän solmun satunnaisesti siten, että se painottaa lähimpiä solmuja ja toisaalta aiempien muurahaisten käyttämiä reittejä (feromoni-taulukko). Kun muurahainen pääsee reitin loppuun, reitin pituus lasketaan ja käytetyn reitin kaarien feromoni-arvot kasvavat sitä enemmän, mitä lyhyempi reitti oli.
  * @author Arto
  */
 public class AntSystem extends ReitinEtsija {
@@ -26,8 +26,8 @@ public class AntSystem extends ReitinEtsija {
      * @param verkko Parametri verkko on verkko, josta lyhin reitti etsitään
      * @param alpha Parametri alpha määrittää feromonin merkityksen kun arvotaan muurahaisen käyttämää reittiä
      * @param beta Parametri beta määrittää verkon kaarten painojen merkityksen kun arvotaan muurahaisen käyttämää reittiä
-     * @param c Parametri c on feromonin alkuarvo
-     * @param q
+     * @param c Parametri c on feromonin alkuarvo (mieluiten hyvin pieni positiivinen luku)
+     * @param q Parametri q on muurahaisen reitilleen jättämän feromonin määrä.
      */
     public AntSystem(XYVerkko verkko, double alpha, double beta, double c, double q) {
         super(verkko);
@@ -44,7 +44,7 @@ public class AntSystem extends ReitinEtsija {
     }
 
     /**
-     *
+     * Konstruktori kohtuullisen hyvillä oletusparametreilla.
      * @param verkko
      */
     public AntSystem(XYVerkko verkko) {
@@ -62,7 +62,7 @@ public class AntSystem extends ReitinEtsija {
     }
 
     /**
-     *
+     * Etsii lyhyen reitin ja palauttaa true.
      * @return
      */
     public boolean etsiLyhinReitti() {
@@ -79,10 +79,10 @@ public class AntSystem extends ReitinEtsija {
     }
 
     /**
-     *
+     * Etsii satunnaisen reitin ja jose se on lyhyempe kuin lyhin löydetty, päivittää lyhimmän reitin. Päivittää lopuksi feromonin määrän kaarilla.
      * @param alku
      */
-    public void muurahainen(int alku) {
+    private void muurahainen(int alku) {
         Pino<Integer> reitti = new Pino<Integer>();
         double pituus = 0;
         int i = alku;
@@ -112,12 +112,12 @@ public class AntSystem extends ReitinEtsija {
     }
 
     /**
-     *
-     * @param p
-     * @param i
-     * @return
+     * Laskee painot, jotka määrittävät todennäköisyyden, jolla kukin solmu valitaan seuraavaksi.
+     * @param p Taulukko painoista, jotka vastaavat todennäköisyyttä, jolla muurahainen menee seuraaviin solmuihin (p[i] > 0, voi periaatteessa kasvaa rajatta)
+     * @param i Lähtösolmu.
+     * @return Palauttaa taulukon p arvojen summan.
      */
-    public double laskeTodennakoisyydet(double[] p, int i) {
+    private double laskeTodennakoisyydet(double[] p, int i) {
         double totalP = 0;
         for (int j = 0; j < verkko.length; j++) {
             if (!kayty[j]) {
@@ -131,9 +131,9 @@ public class AntSystem extends ReitinEtsija {
     }
 
     /**
-     *
-     * @param totalP
-     * @param p
+     * Arpoo seuraavan solmun.
+     * @param totalP Taulukon p arvojen summa.
+     * @param p p[i] on paino, joka määrittää todennäköisyyden, jolla valitaan solmu i;
      * @return
      */
     public int arvoSeuraava(double totalP, double[] p) {
