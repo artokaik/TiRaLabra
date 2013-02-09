@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import tiralabra.algoritmit.AinaLahimpaan;
+import tiralabra.algoritmit.AntSystem;
 import tiralabra.algoritmit.BranchAndBound;
 import tiralabra.algoritmit.BruteForce;
 import tiralabra.algoritmit.KarpHeld;
@@ -31,7 +32,7 @@ public class Kayttis implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("reitti");
-        frame.setPreferredSize(new Dimension(1200, 800));
+        frame.setPreferredSize(new Dimension(1500, 800));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,23 +44,27 @@ public class Kayttis implements Runnable {
 
     public void luoKomponentit(Container container) {
         container.setLayout(new GridLayout(1,2));
-        int leveys = 500;
-        int korkeus = 500;
-        XYVerkko verkko = XYVerkko.arvoUusi(20, leveys, korkeus);
+        int leveys = 400;
+        int korkeus = 400;
+        XYVerkko verkko = XYVerkko.arvoUusi(100, leveys, korkeus);
         
-        AinaLahimpaan hakija1 = new AinaLahimpaan(verkko);
+        AntSystem hakija1 = new AntSystem(verkko);
         hakija1.etsiLyhinReitti();
         container.add(new Piirtoalusta(hakija1, leveys, korkeus));
         
-        KarpHeld hakija2 = new KarpHeld(verkko);
-        hakija2.etsiLyhinReitti();        
-        if(hakija2.isValmis()){
-            container.add(new Piirtoalusta(hakija2, leveys, korkeus));
-        }else{
-            container.add(new PiirtoalustaPrim(hakija2, leveys, korkeus));
+        AinaLahimpaan hakija3 = new AinaLahimpaan(verkko);
+        hakija3.etsiLyhinReitti();
+        container.add(new Piirtoalusta(hakija3, leveys, korkeus));
+        
+//        KarpHeld hakija2 = new KarpHeld(verkko);
+//        hakija2.etsiLyhinReitti();        
+//        if(hakija2.isValmis()){
+//            container.add(new Piirtoalusta(hakija2, leveys, korkeus));
+//        }else{
+//            container.add(new PiirtoalustaPrim(hakija2, leveys, korkeus));
 //            String teksti = "Minimi: "+(int)hakija2.getMinimi();
 //            container.add(new JLabel(teksti));
-        }
+//        }
         
     }
 }
