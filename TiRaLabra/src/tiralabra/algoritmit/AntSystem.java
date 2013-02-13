@@ -66,11 +66,11 @@ public class AntSystem extends ReitinEtsija {
      * @return
      */
     public boolean etsiLyhinReitti() {
-        for (int i = 0; i < verkko.length*10; i++) {
+        for (int i = 0; i < verkko.length*100; i++) {
             for (int j = 0; j < kayty.length; j++) {
                 kayty[j] = false;
                 for (int k = 0; k < verkko.length; k++) {
-                    feromoni[j][k] *= 0.90;
+                    feromoni[j][k] *= 0.95;
                 }
             }
             muurahainen(0);
@@ -79,7 +79,7 @@ public class AntSystem extends ReitinEtsija {
     }
 
     /**
-     * Etsii satunnaisen reitin ja jose se on lyhyempe kuin lyhin löydetty, päivittää lyhimmän reitin. Päivittää lopuksi feromonin määrän kaarilla.
+     * Etsii satunnaisen reitin ja jos se on lyhyempi kuin lyhin löydetty, päivittää lyhimmän reitin. Päivittää lopuksi feromonin määrän kaarilla.
      * @param alku
      */
     private void muurahainen(int alku) {
