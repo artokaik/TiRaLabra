@@ -29,7 +29,7 @@ public class AinaLahimpaan extends ReitinEtsija{
      * 
      */
     public void etsiLyhinReitti(){
-        for (int i = 0; i < verkko.length; i++) {
+        for (int i = 0; i < kaaret.length; i++) {
             aloitaEtsiminen(i);           
         }
     }
@@ -48,11 +48,11 @@ public class AinaLahimpaan extends ReitinEtsija{
         while(!this.ollaankoReitinLopussa()){
             int y = etsiLahinKaymaton(x);
             lyhytReitti.push(y);
-            lyhyenReitinPituus += verkko[x][y];
+            lyhyenReitinPituus += kaaret[x][y];
             kayty[y]=true;
             x=y;
         }
-        lyhyenReitinPituus += verkko[x][alku];
+        lyhyenReitinPituus += kaaret[x][alku];
         if(lyhyenReitinPituus<this.lyhimmanReitinPituus){
             this.lyhimmanReitinPituus=lyhyenReitinPituus;
             this.lyhinReitti=lyhytReitti;
@@ -70,9 +70,9 @@ public class AinaLahimpaan extends ReitinEtsija{
     private int etsiLahinKaymaton(int solmu) {
         double pieninValimatka = Double.MAX_VALUE;
         int lahin = Integer.MAX_VALUE;
-        for (int i = 0; i < verkko.length; i++) {
-            if (!kayty[i] && verkko[solmu][i] < pieninValimatka) {
-                pieninValimatka = verkko[solmu][i];
+        for (int i = 0; i < kaaret.length; i++) {
+            if (!kayty[i] && kaaret[solmu][i] < pieninValimatka) {
+                pieninValimatka = kaaret[solmu][i];
                 lahin = i;
             }
         }      

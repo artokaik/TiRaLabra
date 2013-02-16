@@ -104,28 +104,28 @@ public class KarpHeld extends ReitinEtsija {
         lyhinReitti.push(v);
         int n = 1;
         while (n < solmut.length) {
-            for (int i = 0; i < verkko.length; i++) {
+            for (int i = 0; i < kaaret.length; i++) {
                 if (virittavaPuu[v][i] || virittavaPuu[i][v]) {
                     virittavaPuu[i][v] = false;
                     virittavaPuu[v][i] = false;
                     lyhinReitti.push(i);
-                    this.lyhimmanReitinPituus += verkko[v][i];
+                    this.lyhimmanReitinPituus += kaaret[v][i];
                     v = i;
                     break;
                 }
             }
             n++;
         }
-        this.lyhimmanReitinPituus += verkko[v][0];
+        this.lyhimmanReitinPituus += kaaret[v][0];
     }
 
     // laskee ja päivittää alarajan lyhimmän reitin pituudelle.
     private double laskeAlaraja() {
         double alaraja = 0;
-        for (int i = 0; i < verkko.length; i++) {
-            for (int j = 0; j < verkko.length; j++) {
+        for (int i = 0; i < kaaret.length; i++) {
+            for (int j = 0; j < kaaret.length; j++) {
                 if (virittavaPuu[i][j]) {
-                    alaraja += verkko[i][j];
+                    alaraja += kaaret[i][j];
                 }
             }
         }
@@ -149,7 +149,7 @@ public class KarpHeld extends ReitinEtsija {
     private void paivitaValepainot() {
         for (int i = 0; i < valepainot.length; i++) {
             for (int j = 0; j < valepainot.length; j++) {
-                valepainot[i][j] = this.verkko[i][j] + solmupainot[i] + solmupainot[j];
+                valepainot[i][j] = this.kaaret[i][j] + solmupainot[i] + solmupainot[j];
             }
         }
     }

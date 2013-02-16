@@ -14,9 +14,9 @@ import tiralabra.tietorakenteet.verkko.XYVerkko;
 public abstract class ReitinEtsija {
 
     /**
-     * verkko kertoo solmujen väliset etäisyydet 
+     * kaaret kertoo solmujen väliset etäisyydet 
      */
-    protected double[][] verkko;
+    protected double[][] kaaret;
     /**
      *solmut on lista solmuista
      */
@@ -39,7 +39,7 @@ public abstract class ReitinEtsija {
      * @param verkko
      */
     public ReitinEtsija(XYVerkko verkko) {
-        this.verkko = verkko.getVerkko();
+        this.kaaret = verkko.getVerkko();
         lyhimmanReitinPituus = Double.MAX_VALUE;
         lyhinReitti = new Pino<Integer>();
         this.kayty = new boolean[verkko.getSolmut().length];
@@ -63,8 +63,8 @@ public abstract class ReitinEtsija {
      * 
      * @return
      */
-    public double[][] getVerkko() {
-        return verkko;
+    public double[][] getKaaret() {
+        return kaaret;
     }
 
     /**

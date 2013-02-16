@@ -35,13 +35,13 @@ public class BruteForce extends ReitinEtsija {
     private void etsiReittia(int lahtoSolmu, double matka, Pino<Integer> reitti) {
         reitti.push(lahtoSolmu);
         kayty[lahtoSolmu] = true;
-        for (int i = 0; i < verkko.length; i++) {
+        for (int i = 0; i < kaaret.length; i++) {
             if (!kayty[i]) {
-                matka += verkko[lahtoSolmu][i];
+                matka += kaaret[lahtoSolmu][i];
                 kayty[i] = true;
                 etsiReittia(i, matka, reitti);
                 kayty[i] = false;
-                matka -= verkko[lahtoSolmu][i];
+                matka -= kaaret[lahtoSolmu][i];
             }
         }
         if (this.ollaankoReitinLopussa()) {
@@ -52,7 +52,7 @@ public class BruteForce extends ReitinEtsija {
     
 
     private void paivitaLyhin(int lahtoSolmu, double matka, Pino<Integer> reitti) {
-        matka += verkko[lahtoSolmu][0];
+        matka += kaaret[lahtoSolmu][0];
         if (matka < lyhimmanReitinPituus) {
             lyhimmanReitinPituus = matka;
             lyhinReitti = (Pino<Integer>) reitti.clone();

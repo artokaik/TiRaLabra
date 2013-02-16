@@ -23,7 +23,7 @@ public class BranchAndBound extends ReitinEtsija {
      */
     public BranchAndBound(XYVerkko xYVerkko) {
         super(xYVerkko);
-        lahimmat = new int[verkko.length][verkko.length];
+        lahimmat = new int[kaaret.length][kaaret.length];
 
     }
 
@@ -42,22 +42,22 @@ public class BranchAndBound extends ReitinEtsija {
         reitti.push(lahtoSolmu);
         kayty[lahtoSolmu] = true;
         if (this.ollaankoReitinLopussa()) {
-            matka += verkko[lahtoSolmu][0];
+            matka += kaaret[lahtoSolmu][0];
             if (matka < lyhimmanReitinPituus) {
                 lyhimmanReitinPituus = matka;
                 lyhinReitti = (Pino<Integer>) reitti.clone();
             }
         } else {
 
-            for (int i = 0; i < verkko.length; i++) {
+            for (int i = 0; i < kaaret.length; i++) {
                 if (!kayty[i]) {
-                    matka += verkko[lahtoSolmu][i];
+                    matka += kaaret[lahtoSolmu][i];
                     if (matka < lyhimmanReitinPituus) {
                         kayty[i] = true;
                         etsiReittia(i, matka, reitti);
                         kayty[i] = false;
                     }
-                    matka -= verkko[lahtoSolmu][i];
+                    matka -= kaaret[lahtoSolmu][i];
 
                 }
             }

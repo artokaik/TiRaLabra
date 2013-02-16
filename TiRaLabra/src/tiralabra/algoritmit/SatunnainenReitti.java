@@ -24,10 +24,10 @@ public class SatunnainenReitti extends ReitinEtsija{
     public void etsiLyhinReitti(){
         lyhimmanReitinPituus=0;
         lyhinReitti.push(0);
-        for (int i = 1; i < verkko.length; i++) {
+        for (int i = 1; i < kaaret.length; i++) {
             lyhinReitti.push(i);
-            this.lyhimmanReitinPituus+=verkko[i-1][i];            
+            this.lyhimmanReitinPituus+=kaaret[i-1][i];            
         }
-        this.lyhimmanReitinPituus+=verkko[verkko.length-1][0];
+        this.lyhimmanReitinPituus+=kaaret[kaaret.length-1][0];
     }
 }

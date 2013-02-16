@@ -10,7 +10,7 @@ import tiralabra.tietorakenteet.verkko.XYKoordinaatti;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
- * AntSystem simuloi muurahaisten toimintaa etsiessään lyhintä Hamiltonin kierrosta verkosta. Yksi "muurahainen" kerrallaan lähtee etsimään lyhintä reittiä. "Muurahainen" valitsee seuraavan käymättömän solmun satunnaisesti siten, että se painottaa lähimpiä solmuja ja toisaalta aiempien muurahaisten käyttämiä reittejä (feromoni-taulukko). Kun muurahainen pääsee reitin loppuun, reitin pituus lasketaan ja käytetyn reitin kaarien feromoni-arvot kasvavat sitä enemmän, mitä lyhyempi reitti oli.
+ * AntSystem simuloi muurahaisten toimintaa etsiessään lyhintä Hamiltonin kierrosta verkosta. Yksi "muurahainen" kerrallaan lähtee etsimään lyhintä reittiä. "Muurahainen" valitsee seuraavan käymättömän solmun satunnaisesti siten, että se painottaa lähimpiä solmuja ja toisaalta aiempien muurahaisten käyttämiä reittejä (feromoni-taulukko). Kun muurahainen pääsee reitin loppuun, reitin pituus lasketaan ja käytetyn reitin kaarien feromoni-arvot kasvavat sitä enemmän, mitä lyhyempi reitti oli. Tämän jälkeen matkaan lähtee uusi muurahainen. Tätä toistetaan n kertaa.
  * @author Arto
  */
 public class AntSystem extends ReitinEtsija {
@@ -20,16 +20,17 @@ public class AntSystem extends ReitinEtsija {
     private double alpha;
     private double beta;
     private double q;
+    private int n;
 
     /**
-     *
+     * 
      * @param verkko Parametri verkko on verkko, josta lyhin reitti etsitään
      * @param alpha Parametri alpha määrittää feromonin merkityksen kun arvotaan muurahaisen käyttämää reittiä
      * @param beta Parametri beta määrittää verkon kaarten painojen merkityksen kun arvotaan muurahaisen käyttämää reittiä
-     * @param c Parametri c on feromonin alkuarvo (mieluiten hyvin pieni positiivinen luku)
+     * @param c Parametri c on feromonin alkuarvo kullakin kaarella (mieluiten hyvin pieni positiivinen luku)
      * @param q Parametri q on muurahaisen reitilleen jättämän feromonin määrä.
      */
-    public AntSystem(XYVerkko verkko, double alpha, double beta, double c, double q) {
+    public AntSystem(XYVerkko verkko, double alpha, double beta, double c, double q, int n) {
         super(verkko);
         arpoja = new Random();
         feromoni = new double[verkko.getVerkko().length][verkko.getVerkko().length];
@@ -41,6 +42,7 @@ public class AntSystem extends ReitinEtsija {
         this.alpha = alpha;
         this.beta = beta;
         this.q = q;
+        this.n = n;
     }
 
     /**
@@ -59,17 +61,18 @@ public class AntSystem extends ReitinEtsija {
         this.alpha = 1;
         this.beta = 3;
         this.q = 1000;
+        this.n=verkko.getVerkko().length*100;
     }
 
     /**
-     * Etsii lyhyen reitin ja palauttaa true.
+     * Etsii lyhyen reitin ja palauttaa true. Ennen jokaista
      * @return
      */
     public boolean etsiLyhinReitti() {
-        for (int i = 0; i < verkko.length*100; i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < kayty.length; j++) {
                 kayty[j] = false;
-                for (int k = 0; k < verkko.length; k++) {
+                for (int k = 0; k < kaaret.length; k++) {
                     feromoni[j][k] *= 0.95;
                 }
             }
@@ -88,17 +91,17 @@ public class AntSystem extends ReitinEtsija {
         int i = alku;
         reitti.push(i);
         kayty[i] = true;
-        double[] p = new double[verkko.length];
+        double[] p = new double[kaaret.length];
 
         while (!ollaankoReitinLopussa()) {
             double totalP = laskeTodennakoisyydet(p, i);
             int j = arvoSeuraava(totalP, p);
             reitti.push(j);
             kayty[j] = true;
-            pituus += verkko[i][j];
+            pituus += kaaret[i][j];
             i = j;
         }
-        pituus += verkko[i][alku];
+        pituus += kaaret[i][alku];
         if (pituus < this.lyhimmanReitinPituus) {
             lyhimmanReitinPituus = pituus;
             lyhinReitti = reitti.clone();
@@ -119,9 +122,9 @@ public class AntSystem extends ReitinEtsija {
      */
     private double laskeTodennakoisyydet(double[] p, int i) {
         double totalP = 0;
-        for (int j = 0; j < verkko.length; j++) {
+        for (int j = 0; j < kaaret.length; j++) {
             if (!kayty[j]) {
-                p[j] = Math.pow(feromoni[i][j], alpha) * Math.pow(1 / verkko[i][j], beta);
+                p[j] = Math.pow(feromoni[i][j], alpha) * Math.pow(1 / kaaret[i][j], beta);
                 totalP += p[j];
             } else {
                 p[j] = 0;
