@@ -41,17 +41,17 @@ public class XYVerkko {
 
     /**
      * Arpoo uuden verkon, jossa on parametrina annettu määrä solmuja. Solmujen koordinaatit ovat väliläl 0-maxX,0-maxY.
-     * @param solmujenMaara
-     * @param maxX
-     * @param maxY
+     * @param solmujenMaara 
+     * @param maxX X-koordinaatin maksimiarvo
+     * @param maxY Y-koordinaatin maksimiarvo
      * @return
      */
-    public static XYVerkko arvoUusi(int solmujenMaara, double maxX, double maxY) {
-        XYVerkko uusiVerkko = new XYVerkko(solmujenMaara);
+    public XYVerkko(int solmujenMaara, double maxX, double maxY) {
+        this(solmujenMaara);
         for (int i = 0; i < solmujenMaara; i++) {
-            uusiVerkko.lisaaSolmu(XYKoordinaatti.arvoUusi(maxX, maxY));
+            this.lisaaSolmu(XYKoordinaatti.arvoUusi(maxX, maxY));
         }
-        return uusiVerkko;
+
     }
 
     /**

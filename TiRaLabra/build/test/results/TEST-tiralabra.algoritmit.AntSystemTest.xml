@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Arto-MacBook-Air.local" name="tiralabra.tietorakenteet.pino.PinoTest" tests="7" time="0.116" timestamp="2013-02-18T12:07:41">
+<testsuite errors="0" failures="0" hostname="Arto-MacBook-Air.local" name="tiralabra.algoritmit.AntSystemTest" tests="2" time="0.596" timestamp="2013-02-18T12:07:38">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="FI" />
@@ -66,7 +66,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tiralabra.tietorakenteet.pino.PinoTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/test/results/TEST-tiralabra.tietorakenteet.pino.PinoTest.xml crashfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junitvmwatcher5077330951537400068.properties propsfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junit6882798287267317803.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tiralabra.algoritmit.AntSystemTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/test/results/TEST-tiralabra.algoritmit.AntSystemTest.xml crashfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junitvmwatcher1737775871727664068.properties propsfile=/Users/Arto/Dropbox/Koulu/TiRaLabra/TiRaLabra/build/junit2932641809533467107.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="libs.Java-EE-GlassFish-v3.wsjwsdp" value="" />
@@ -443,13 +443,8 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit" />
   </properties>
-  <testcase classname="tiralabra.tietorakenteet.pino.PinoTest" name="stringPinoAluksiTyhjä" time="0.003" />
-  <testcase classname="tiralabra.tietorakenteet.pino.PinoTest" name="stringPinoPalauttaaAluksiNull" time="0.0" />
-  <testcase classname="tiralabra.tietorakenteet.pino.PinoTest" name="stringPinoPushToimii" time="0.001" />
-  <testcase classname="tiralabra.tietorakenteet.pino.PinoTest" name="stringPinoPushPopPopToimii" time="0.001" />
-  <testcase classname="tiralabra.tietorakenteet.pino.PinoTest" name="stringPinoKlooniToimiiTyhjalla" time="0.0" />
-  <testcase classname="tiralabra.tietorakenteet.pino.PinoTest" name="stringPinoKlooniToimiiYhdella" time="0.0" />
-  <testcase classname="tiralabra.tietorakenteet.pino.PinoTest" name="stringPinoKlooniToimiiUsealla" time="0.0" />
+  <testcase classname="tiralabra.algoritmit.AntSystemTest" name="AntSystemEiAnnaParempaaTulostaKuinBranchAndBound10satunnaisellaVerkolla" time="0.315" />
+  <testcase classname="tiralabra.algoritmit.AntSystemTest" name="BranchAndBoundPalauttaaKierroksen10satunnaisellaVerkolla" time="0.179" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -32,7 +32,7 @@ public class Kayttis implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("reitti");
-        frame.setPreferredSize(new Dimension(1600, 800));
+        frame.setPreferredSize(new Dimension(1500, 800));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,15 +43,26 @@ public class Kayttis implements Runnable {
     }
 
     public void luoKomponentit(Container container) {
-        container.setLayout(new GridLayout(2, 4));
-        int leveys = 1350;
-        int korkeus = 750;
-        XYVerkko verkko = XYVerkko.arvoUusi(200, leveys, korkeus);
+        container.setLayout(new GridLayout(1, 3));
+        int leveys = 400;
+        int korkeus = 400;
+        XYVerkko verkko = new XYVerkko(11, leveys, korkeus);
 
-        AntSystem hakija1 = new AntSystem(verkko);
-        hakija1.etsiLyhinReitti();
-        container.add(new Piirtoalusta(hakija1, leveys, korkeus));
+//        AntSystem hakija1 = new AntSystem(verkko);
+//        hakija1.etsiLyhinReitti();
+//        container.add(new Piirtoalusta(hakija1, leveys, korkeus));
 
+//        AinaLahimpaan hakija2 = new AinaLahimpaan(verkko);
+//        hakija2.etsiLyhinReitti();
+//        container.add(new Piirtoalusta(hakija2, leveys, korkeus));
+
+        BranchAndBound hakija3 = new BranchAndBound(verkko);
+        hakija3.etsiLyhinReitti();
+        container.add(new Piirtoalusta(hakija3, leveys, korkeus));
+
+        BruteForce hakija4 = new BruteForce(verkko);
+        hakija4.etsiLyhinReitti();
+        container.add(new Piirtoalusta(hakija4, leveys, korkeus));
 //        AntSystem hakija2 = new AntSystem(verkko);
 //        hakija2.etsiLyhinReitti();
 //        container.add(new Piirtoalusta(hakija2, leveys, korkeus));

@@ -30,7 +30,7 @@ public class VerkkoTest {
     @Before
     public void setUp() {
         arvottujenSolmujenMaara = 10;
-        arvottuVerkko = XYVerkko.arvoUusi(arvottujenSolmujenMaara, 10, 10);
+        arvottuVerkko = new XYVerkko(arvottujenSolmujenMaara, 10, 10);
         rakennetunVerkonKoko = 10;
         rakennettuVerkko = new XYVerkko(rakennetunVerkonKoko);
         

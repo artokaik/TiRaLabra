@@ -58,6 +58,20 @@ public abstract class ReitinEtsija {
         }
         return true;
     }
+    
+         /**
+     *
+     * Jos parametrina annettu reitti on lyhyempi kuin lyhin löydetty, päivittää lyhimmän reitin.
+     * 
+     * @param reitti
+     * @param pituus
+     */
+    public void paivitaLyhinReitti(Pino<Integer> reitti, double pituus) {
+        if (pituus < lyhimmanReitinPituus) {
+            lyhimmanReitinPituus = pituus;
+            lyhinReitti = (Pino<Integer>) reitti.clone();
+        }
+    }
 
     /**
      * 
@@ -90,4 +104,6 @@ public abstract class ReitinEtsija {
     public Pino<Integer> getLyhinReitti() {
         return lyhinReitti;
     }
+    
+
 }

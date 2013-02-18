@@ -8,14 +8,12 @@ import tiralabra.tietorakenteet.pino.Pino;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
- * BranchAndBOund etsii lyhimmän reitin hieman nopeammin kuin BruteForce, mutta
+ * BranchAndBound etsii lyhimmän reitin hieman nopeammin kuin BruteForce, mutta
  * kuitenkin hitaasti. Saa parametrinaan verkon, josta lyhin reitti etsitään.
  *
  * @author Arto
  */
 public class BranchAndBound extends ReitinEtsija {
-
-    private int[][] lahimmat;
 
     /**
      *
@@ -23,7 +21,7 @@ public class BranchAndBound extends ReitinEtsija {
      */
     public BranchAndBound(XYVerkko xYVerkko) {
         super(xYVerkko);
-        lahimmat = new int[kaaret.length][kaaret.length];
+
 
     }
 
@@ -33,38 +31,51 @@ public class BranchAndBound extends ReitinEtsija {
      * lyhin jo löytynyt reitti.
      */
     public void etsiLyhinReitti() {
-
-        etsiReittia(0, 0, new Pino<Integer>());
+        kayty[0] = true;
+        Pino<Integer> reitti = new Pino<Integer>();
+        reitti.push(0);
+        etsiReittia(0, 0, reitti);
     }
 
     //Etsii lyhimmän reitin aloittaen parametrina annetusta solmusta. Alussa matka=0 ja reitti on tyhjä pino, mutta molemmat päivittyvät myöhemmin kun metodi kutsuu itseään rekursiivisesti.
-    private void etsiReittia(int lahtoSolmu, double matka, Pino<Integer> reitti) {
-        reitti.push(lahtoSolmu);
-        kayty[lahtoSolmu] = true;
+    /**
+     *
+     * @param lahtoSolmu
+     * @param pituus
+     * @param reitti
+     */
+    public void etsiReittia(int lahtoSolmu, double pituus, Pino<Integer> reitti) {
+        if (pituus > lyhimmanReitinPituus) return;  
+        
         if (this.ollaankoReitinLopussa()) {
-            matka += kaaret[lahtoSolmu][0];
-            if (matka < lyhimmanReitinPituus) {
-                lyhimmanReitinPituus = matka;
-                lyhinReitti = (Pino<Integer>) reitti.clone();
-            }
-        } else {
-
-            for (int i = 0; i < kaaret.length; i++) {
-                if (!kayty[i]) {
-                    matka += kaaret[lahtoSolmu][i];
-                    if (matka < lyhimmanReitinPituus) {
-                        kayty[i] = true;
-                        etsiReittia(i, matka, reitti);
-                        kayty[i] = false;
-                    }
-                    matka -= kaaret[lahtoSolmu][i];
-
-                }
-            }
-
+            pituus += kaaret[lahtoSolmu][0];
+            paivitaLyhinReitti(reitti, pituus);
+            return;
         }
+        for (int i = 0; i < kaaret.length; i++) {
+            if (!kayty[i])  meneSeuraavaanSolmuun(lahtoSolmu, i, reitti, pituus);        
+        }
+    }
 
+
+    /**
+     *
+     * 
+     * 
+     * @param lahto
+     * @param seuraava
+     * @param reitti
+     * @param pituus
+     */
+    public void meneSeuraavaanSolmuun(int lahto, int seuraava, Pino<Integer> reitti, double pituus) {
+        reitti.push(seuraava);
+        pituus += kaaret[lahto][seuraava];
+        kayty[seuraava] = true;
+
+        etsiReittia(seuraava, pituus, reitti);
+
+        kayty[seuraava] = false;
+        pituus -= kaaret[lahto][seuraava];
         reitti.pop();
-
     }
 }
