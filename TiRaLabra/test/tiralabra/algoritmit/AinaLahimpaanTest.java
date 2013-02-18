@@ -17,9 +17,9 @@ import tiralabra.tietorakenteet.verkko.XYVerkko;
  *
  * @author Arto
  */
-public class AntSystemTest {
+public class AinaLahimpaanTest {
     
-    public AntSystemTest() {
+    public AinaLahimpaanTest() {
     }
     
     @BeforeClass
@@ -38,26 +38,26 @@ public class AntSystemTest {
     public void tearDown() {
     }
     
-        @Test
-    public void AntSystemAntaaSamanTaiVahanHuonommanTuloksenKuinBranchAndBound10satunnaisellaVerkolla() {
+           @Test
+    public void AinaLahimpaanAntaaSamanTaiVahanHuonommanTuloksenKuinBranchAndBound10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
             XYVerkko verkko = new XYVerkko(10, 100, 100);
             BranchAndBound bab = new BranchAndBound(verkko);
-            AntSystem as = new AntSystem(verkko);
+            AinaLahimpaan al = new AinaLahimpaan(verkko);
             bab.etsiLyhinReitti();
-            as.etsiLyhinReitti();
-            assertTrue((bab.lyhimmanReitinPituus-as.lyhimmanReitinPituus) < 0.001);
-            assertTrue((bab.lyhimmanReitinPituus*1.5-as.lyhimmanReitinPituus) >0);
+            al.etsiLyhinReitti();
+            assertTrue((bab.lyhimmanReitinPituus-al.lyhimmanReitinPituus) < 0.001);
+            assertTrue((bab.lyhimmanReitinPituus*1.5-al.lyhimmanReitinPituus) >0);
         }
     }
     
     @Test
-    public void AntSystemPalauttaaKierroksen10satunnaisellaVerkolla() {
+    public void AinaLahimpaanPalauttaaKierroksen10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
             XYVerkko verkko = new XYVerkko(30, 100, 100);
-            AntSystem as = new AntSystem(verkko);
-            as.etsiLyhinReitti();
-            assertTrue(onKierros(as.getLyhinReitti(),as.solmut.length));
+            AinaLahimpaan al = new AinaLahimpaan(verkko);
+            al.etsiLyhinReitti();
+            assertTrue(onKierros(al.getLyhinReitti(),al.solmut.length));
         }
     }
 

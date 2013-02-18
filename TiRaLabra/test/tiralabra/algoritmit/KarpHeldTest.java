@@ -17,47 +17,52 @@ import tiralabra.tietorakenteet.verkko.XYVerkko;
  *
  * @author Arto
  */
-public class AntSystemTest {
-    
-    public AntSystemTest() {
+public class KarpHeldTest {
+
+    public KarpHeldTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
-        @Test
-    public void AntSystemAntaaSamanTaiVahanHuonommanTuloksenKuinBranchAndBound10satunnaisellaVerkolla() {
+
+    @Test
+    public void KarpHelhAntaaSamanTuloksenKuinBranchAndBound10satunnaisellaVerkollaJosReittiLöytyy() {
         for (int i = 0; i < 10; i++) {
             XYVerkko verkko = new XYVerkko(10, 100, 100);
             BranchAndBound bab = new BranchAndBound(verkko);
-            AntSystem as = new AntSystem(verkko);
+            KarpHeld kh = new KarpHeld(verkko);
             bab.etsiLyhinReitti();
-            as.etsiLyhinReitti();
-            assertTrue((bab.lyhimmanReitinPituus-as.lyhimmanReitinPituus) < 0.001);
-            assertTrue((bab.lyhimmanReitinPituus*1.5-as.lyhimmanReitinPituus) >0);
+            kh.etsiLyhinReitti();
+            if (kh.isValmis()) {
+                assertTrue(Math.abs(bab.lyhimmanReitinPituus - kh.lyhimmanReitinPituus) < 0.001);
+            } else {
+                assertTrue(Math.abs(kh.getMinimi()) <= bab.getLyhimmanReitinPituus());
+            }
         }
     }
-    
+
     @Test
-    public void AntSystemPalauttaaKierroksen10satunnaisellaVerkolla() {
+    public void KarpHeldPalauttaaKierroksen10satunnaisellaVerkollaJosValmis() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(30, 100, 100);
-            AntSystem as = new AntSystem(verkko);
-            as.etsiLyhinReitti();
-            assertTrue(onKierros(as.getLyhinReitti(),as.solmut.length));
+            XYVerkko verkko = new XYVerkko(i * 2 + 10, 100, 100);
+            KarpHeld kh = new KarpHeld(verkko);
+            kh.etsiLyhinReitti();
+            if (kh.isValmis()) {
+                assertTrue(onKierros(kh.getLyhinReitti(), kh.solmut.length));
+            }
         }
     }
 
