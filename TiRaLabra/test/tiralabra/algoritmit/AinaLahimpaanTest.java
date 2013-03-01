@@ -18,27 +18,27 @@ import tiralabra.tietorakenteet.verkko.XYVerkko;
  * @author Arto
  */
 public class AinaLahimpaanTest {
-    
+
     public AinaLahimpaanTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
-           @Test
+
+    @Test
     public void AinaLahimpaanAntaaSamanTaiVahanHuonommanTuloksenKuinBranchAndBound10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
             XYVerkko verkko = new XYVerkko(10, 100, 100);
@@ -46,18 +46,31 @@ public class AinaLahimpaanTest {
             AinaLahimpaan al = new AinaLahimpaan(verkko);
             bab.etsiLyhinReitti();
             al.etsiLyhinReitti();
-            assertTrue((bab.lyhimmanReitinPituus-al.lyhimmanReitinPituus) < 0.001);
-            assertTrue((bab.lyhimmanReitinPituus*1.5-al.lyhimmanReitinPituus) >0);
+            assertTrue((bab.lyhimmanReitinPituus - al.lyhimmanReitinPituus) < 0.001);
+            assertTrue((bab.lyhimmanReitinPituus * 1.5 - al.lyhimmanReitinPituus) > 0);
         }
     }
-    
+
+    @Test
+    public void AinaLahimpaanAntaaHuonommanTuloksenKuinKarpHeld10satunnaisellaIsohkollaVerkolla() {
+        for (int i = 0; i < 10; i++) {
+            XYVerkko verkko = new XYVerkko(100, 100, 100);
+            KarpHeld kh = new KarpHeld(verkko);
+            AinaLahimpaan al = new AinaLahimpaan(verkko);
+            kh.etsiLyhinReitti();
+            al.etsiLyhinReitti();
+            assertTrue(kh.getMinimi()<al.getLyhimmanReitinPituus());
+            assertTrue(kh.getMinimi()*1.5>al.getLyhimmanReitinPituus());
+        }
+    }
+
     @Test
     public void AinaLahimpaanPalauttaaKierroksen10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
             XYVerkko verkko = new XYVerkko(30, 100, 100);
             AinaLahimpaan al = new AinaLahimpaan(verkko);
             al.etsiLyhinReitti();
-            assertTrue(onKierros(al.getLyhinReitti(),al.solmut.length));
+            assertTrue(onKierros(al.getLyhinReitti(), al.solmut.length));
         }
     }
 
