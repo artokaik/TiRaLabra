@@ -8,7 +8,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import tiralabra.algoritmit.AinaLahimpaan;
 import tiralabra.algoritmit.AntSystem;
@@ -16,7 +15,6 @@ import tiralabra.algoritmit.BranchAndBound;
 import tiralabra.algoritmit.BranchAndBound2;
 import tiralabra.algoritmit.BruteForce;
 import tiralabra.algoritmit.KarpHeld;
-import tiralabra.algoritmit.SatunnainenReitti;
 import tiralabra.tietorakenteet.verkko.XYVerkko;
 
 /**
@@ -44,67 +42,52 @@ public class Kayttis implements Runnable {
     }
 
     public void luoKomponentit(Container container) {
-        container.setLayout(new GridLayout(1, 3));
-        int leveys = 400;
-        int korkeus = 400;
-        XYVerkko verkko = new XYVerkko(11, leveys, korkeus);
+        container.setLayout(new GridLayout(2, 3));
 
-//        AntSystem hakija1 = new AntSystem(verkko);
-//        hakija1.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija1, leveys, korkeus));
+        int leveys = 300;
+        int korkeus = 300;
+        XYVerkko verkko = new XYVerkko(12, leveys, korkeus);
 
-//        AinaLahimpaan hakija2 = new AinaLahimpaan(verkko);
-//        hakija2.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija2, leveys, korkeus));
+        long alku;
+        long loppu;
 
+        alku = System.currentTimeMillis();
+        BruteForce hakija1 = new BruteForce(verkko);
+        hakija1.etsiLyhinReitti();
+        loppu = System.currentTimeMillis();
+        container.add(new EtsinnanTulos(hakija1, leveys, korkeus, loppu - alku));
+
+        alku = System.currentTimeMillis();
+        BranchAndBound hakija2 = new BranchAndBound(verkko);
+        hakija2.etsiLyhinReitti();
+        loppu = System.currentTimeMillis();
+        container.add(new EtsinnanTulos(hakija2, leveys, korkeus, loppu - alku));
+        
+        alku = System.currentTimeMillis();
         BranchAndBound2 hakija3 = new BranchAndBound2(verkko);
         hakija3.etsiLyhinReitti();
-        container.add(new Piirtoalusta(hakija3, leveys, korkeus));
+        loppu = System.currentTimeMillis();
+        container.add(new EtsinnanTulos(hakija3, leveys, korkeus, loppu - alku));
 
-        BruteForce hakija4 = new BruteForce(verkko);
+        alku = System.currentTimeMillis();
+        AinaLahimpaan hakija4 = new AinaLahimpaan(verkko);
         hakija4.etsiLyhinReitti();
-        container.add(new Piirtoalusta(hakija4, leveys, korkeus));
-//        AntSystem hakija2 = new AntSystem(verkko);
-//        hakija2.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija2, leveys, korkeus));
-//
-//        AntSystem hakija3 = new AntSystem(verkko);
-//        hakija3.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija3, leveys, korkeus));
-//
-//        AntSystem hakija4 = new AntSystem(verkko);
-//        hakija4.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija4, leveys, korkeus));
-//
-//        AntSystem hakija5 = new AntSystem(verkko);
-//        hakija5.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija5, leveys, korkeus));
-//
-//        AntSystem hakija6 = new AntSystem(verkko);
-//        hakija6.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija6, leveys, korkeus));
-//
-//        AntSystem hakija7 = new AntSystem(verkko);
-//        hakija7.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija7, leveys, korkeus));
-//        
-//                AntSystem hakija8 = new AntSystem(verkko);
-//        hakija8.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija8, leveys, korkeus));
+        loppu = System.currentTimeMillis();
+        container.add(new EtsinnanTulos(hakija4, leveys, korkeus, loppu - alku));
 
-//        AinaLahimpaan hakija3 = new AinaLahimpaan(verkko);
-//        hakija3.etsiLyhinReitti();
-//        container.add(new Piirtoalusta(hakija3, leveys, korkeus));
+        alku = System.currentTimeMillis();
+        AntSystem hakija5 = new AntSystem(verkko);
+        hakija5.etsiLyhinReitti();
+        loppu = System.currentTimeMillis();
+        container.add(new EtsinnanTulos(hakija5, leveys, korkeus, loppu - alku));
 
-//        KarpHeld hakija2 = new KarpHeld(verkko);
-//        hakija2.etsiLyhinReitti();        
-//        if(hakija2.isValmis()){
-//            container.add(new Piirtoalusta(hakija2, leveys, korkeus));
-//        }else{
-//            container.add(new PiirtoalustaPrim(hakija2, leveys, korkeus));
-//            String teksti = "Minimi: "+(int)hakija2.getMinimi();
-//            container.add(new JLabel(teksti));
-//        }
+        alku = System.currentTimeMillis();
+        KarpHeld hakija6 = new KarpHeld(verkko);
+        hakija6.etsiLyhinReitti();
+        loppu = System.currentTimeMillis();
+        container.add(new EtsinnanTulos(hakija6, leveys, korkeus, loppu - alku));
+
+
 
     }
 }

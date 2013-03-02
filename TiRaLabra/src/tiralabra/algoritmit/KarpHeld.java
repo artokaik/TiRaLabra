@@ -37,7 +37,12 @@ public class KarpHeld extends ReitinEtsija {
     public KarpHeld(XYVerkko verkko) {
         this(verkko,100000);
     }
-        public KarpHeld(XYVerkko verkko, int iteraatiot) {
+        /**
+     *
+     * @param verkko
+     * @param iteraatiot
+     */
+    public KarpHeld(XYVerkko verkko, int iteraatiot) {
         super(verkko);
         solmupainot = new int[solmut.length];
         valepainot = new double[solmut.length][solmut.length];
@@ -97,14 +102,19 @@ public class KarpHeld extends ReitinEtsija {
         return false;
     }
 
-    // Päivittää laskennalliset solmupainot.
+    /**
+     * Päivittää laskennalliset solmupainot.
+     */
     public void paivitaSolmupainot() {
         for (int i = 0; i < solmupainot.length; i++) {
             solmupainot[i] = solmupainot[i] + asteet[i] - 2;
         }
     }
 
-    // Rakentaa lyhimmästä reitistä pinon ja tallentaa sen lyhinReitti-muuttujaan. Näin tuloste saadaan samalla tavalla kuin muista algoritmeista.
+
+    /**
+     * Rakentaa lyhimmästä reitistä pinon ja tallentaa sen lyhinReitti-muuttujaan. Näin tuloste saadaan samalla tavalla kuin muista algoritmeista.
+     */
     public void rakennaPino() {
         this.lyhimmanReitinPituus = 0;
         int v = 0;
@@ -126,7 +136,11 @@ public class KarpHeld extends ReitinEtsija {
         this.lyhimmanReitinPituus += kaaret[v][0];
     }
 
-    // laskee ja päivittää alarajan lyhimmän reitin pituudelle.
+    
+    /**
+     *laskee ja päivittää alarajan lyhimmän reitin pituudelle.
+     * @return Palauttaa alarajan lyhimmän reitin pituudelle.
+     */
     public double laskeAlaraja() {
         double alaraja = 0;
         for (int i = 0; i < kaaret.length; i++) {
@@ -142,7 +156,11 @@ public class KarpHeld extends ReitinEtsija {
         return alaraja;
     }
 
-    // laskee onko virittävä l-puu piiri vai ei (virittävä l-puu on piiri täsmälleen silloin jos kaikkien solmujen asteluku on 2)
+    
+    /**
+     *laskee onko virittävä l-puu piiri vai ei (virittävä l-puu on piiri täsmälleen silloin jos kaikkien solmujen asteluku on 2)
+     * @return palauttaa true jos kyseessä on piiri, muuten false.
+     */
     public boolean onkoPiiri() {
         for (int i = 0; i < asteet.length; i++) {
             if (asteet[i] != 2) {
@@ -151,18 +169,22 @@ public class KarpHeld extends ReitinEtsija {
         }
         return true;
     }
-// Päivittää kaarien valepainot
 
-    private void paivitaValepainot() {
+    /**
+     * Päivittää kaarien valepainot
+     */
+    public void paivitaValepainot() {
         for (int i = 0; i < valepainot.length; i++) {
             for (int j = 0; j < valepainot.length; j++) {
                 valepainot[i][j] = this.kaaret[i][j] + solmupainot[i] + solmupainot[j];
             }
         }
     }
-//päivittää solmujen asteet virittävässä l-puussa.
 
-    private void paivitaAsteet() {
+    /**
+     * päivittää solmujen asteet virittävässä l-puussa.
+     */
+    public void paivitaAsteet() {
         for (int i = 0; i < solmut.length; i++) {
             for (int j = 0; j < solmut.length; j++) {
                 if (virittavaPuu[i][j]) {
@@ -174,7 +196,7 @@ public class KarpHeld extends ReitinEtsija {
     }
 
     /**
-     *
+     * 
      * @return
      */
     public boolean[][] getVirittavaPuu() {

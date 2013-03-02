@@ -63,18 +63,7 @@ public class AntSystem extends ReitinEtsija {
      * @param verkko
      */
     public AntSystem(XYVerkko verkko) {
-        super(verkko);
-        arpoja = new Random();
-        feromoni = new double[verkko.getVerkko().length][verkko.getVerkko().length];
-        for (int i = 0; i < solmut.length; i++) {
-            for (int j = 0; j < solmut.length; j++) {
-                feromoni[i][j] = 0.01;
-            }
-        }
-        this.alpha = 1;
-        this.beta = 3;
-        this.q = 1000;
-        this.n = verkko.getVerkko().length * 100;
+        this(verkko, 1, 4, 0.01, 1000, verkko.getVerkko().length * 10);
     }
 
     /**

@@ -26,7 +26,7 @@ public class BranchAndBound extends ReitinEtsija {
     }
 
     /**
-     * Metodi käy rekursion avulla järjestyksessä läpi kaikki mahdolliset
+     * Metodi käy rekursion avulla (etsiReittia kutsuu meneSeuraavaanSolmuun ja päinvastoin) läpi kaikki mahdolliset
      * reitit, mutta lopettaa reitin tutkimisen aina jos se on pidempi kuin
      * lyhin jo löytynyt reitti.
      */

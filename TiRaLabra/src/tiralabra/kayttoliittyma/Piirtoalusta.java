@@ -24,6 +24,8 @@ public class Piirtoalusta extends JPanel {
     private int leveys;
     private int korkeus;
 
+    
+
     public Piirtoalusta(ReitinEtsija etsija, int leveys, int korkeus) {
         this.hakija = etsija;
         this.leveys = leveys;
@@ -50,9 +52,5 @@ public class Piirtoalusta extends JPanel {
             a = b;
         }
         graphics.drawLine((int) (a.getX()), (int) (a.getY()), (int) (alku.getX()), (int) (alku.getY()));
-        JLabel teksti = new JLabel("Reitin pituus: " + (int) hakija.getLyhimmanReitinPituus());
-
-        this.add(teksti);
-
     }
 }

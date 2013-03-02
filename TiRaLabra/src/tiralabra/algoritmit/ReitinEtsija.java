@@ -35,7 +35,8 @@ public abstract class ReitinEtsija {
     protected boolean[] kayty;
 
     /**
-     *
+     * Konstruktori saa parametrinaan verkon, josta lyhin reitti etsitään. Lisäksi konstruktori alustaa kaikki muuttujat.
+     * 
      * @param verkko
      */
     public ReitinEtsija(XYVerkko verkko) {
@@ -48,6 +49,7 @@ public abstract class ReitinEtsija {
 
     /**
      * Palauttaa true jos kaikissa solmuissa on käyty. Muuten palauttaa false
+     * 
      * @return
      */
     protected boolean ollaankoReitinLopussa() {
