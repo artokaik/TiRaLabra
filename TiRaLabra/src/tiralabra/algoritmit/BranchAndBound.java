@@ -37,32 +37,32 @@ public class BranchAndBound extends ReitinEtsija {
         etsiReittia(0, 0, reitti);
     }
 
-    //Etsii lyhimmän reitin aloittaen parametrina annetusta solmusta. Alussa matka=0 ja reitti on tyhjä pino, mutta molemmat päivittyvät myöhemmin kun metodi kutsuu itseään rekursiivisesti.
+    
     /**
+     * 
+     * Kutsuu lyhimmän reitin päivittävää metodia jos ollaan käyty kaikissa solmuissa. Muussa tapauksessa kutsuu meneSeuraavaanSolmuun-metodia vuorollaan kaikilla käymättömillä solmuilla.
      *
      * @param lahtoSolmu
      * @param pituus
      * @param reitti
      */
     public void etsiReittia(int lahtoSolmu, double pituus, Pino<Integer> reitti) {
-        if (pituus > lyhimmanReitinPituus) return;  
-        
         if (this.ollaankoReitinLopussa()) {
             pituus += kaaret[lahtoSolmu][0];
             paivitaLyhinReitti(reitti, pituus);
             return;
         }
         for (int i = 0; i < kaaret.length; i++) {
-            if (!kayty[i])  meneSeuraavaanSolmuun(lahtoSolmu, i, reitti, pituus);        
+            if (!kayty[i]) {
+                meneSeuraavaanSolmuun(lahtoSolmu, i, reitti, pituus);
+            }
         }
     }
 
-
     /**
+     * Lisää parametrina annetun solmun reittiin ja mikäli reitti tähän asti on lyhyempi kuin lyhin jo löydetty, kutsuu etsiReittia-metodia asettaen parametrina annetun maalisolmun seuraavaksi lähtösolmuksi.
      *
-     * 
-     * 
-     * @param lahto
+     * @param lahto 
      * @param seuraava
      * @param reitti
      * @param pituus
@@ -71,9 +71,9 @@ public class BranchAndBound extends ReitinEtsija {
         reitti.push(seuraava);
         pituus += kaaret[lahto][seuraava];
         kayty[seuraava] = true;
-
-        etsiReittia(seuraava, pituus, reitti);
-
+        if (pituus < lyhimmanReitinPituus) {
+            etsiReittia(seuraava, pituus, reitti);
+        }
         kayty[seuraava] = false;
         pituus -= kaaret[lahto][seuraava];
         reitti.pop();

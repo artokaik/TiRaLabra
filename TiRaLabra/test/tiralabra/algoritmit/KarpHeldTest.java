@@ -41,7 +41,7 @@ public class KarpHeldTest {
     @Test
     public void KarpHelhAntaaSamanTuloksenKuinBranchAndBound10satunnaisellaVerkollaJosReittiLöytyy() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(10, 100, 100);
+            XYVerkko verkko = new XYVerkko(9, 100, 100);
             BranchAndBound bab = new BranchAndBound(verkko);
             KarpHeld kh = new KarpHeld(verkko);
             bab.etsiLyhinReitti();

@@ -14,6 +14,8 @@ import tiralabra.tietorakenteet.verkko.XYVerkko;
  * heuristiikka. Se löytää optimaalisen reitin melko usein, mutta ei kuitenkaan
  * aina. Mikäli se ei löydä optimaalista reittiä, se pystyy antamaan hyvin
  * lähellä totuutta olevan arvion lyhimmän reitin pituudesta.
+ * 
+ * Muuttuja int[] solmupainot
  *
  *
  * @author Arto
@@ -26,35 +28,40 @@ public class KarpHeld extends ReitinEtsija {
     private double[][] valepainot;
     private double minimi;
     private boolean valmis;
+    private int iteraatiot;
 
     /**
      *
      * @param verkko
      */
     public KarpHeld(XYVerkko verkko) {
+        this(verkko,100000);
+    }
+        public KarpHeld(XYVerkko verkko, int iteraatiot) {
         super(verkko);
         solmupainot = new int[solmut.length];
         valepainot = new double[solmut.length][solmut.length];
         valmis = false;
         minimi = 0;
+        this.iteraatiot = iteraatiot;
     }
 
     /**
-     * 1. Asetetaan β(v) ← 0 kaikille pisteille v.
+     * 1. Asetetaan β(v) ← 0 kaikille pisteille v (β on solmupaino).
      *
-     * 2. Asetetaanα′(u,v)←α(u,v)+β(u)+β(v)kaikilleviivoille(u,v).
+     * 2. Asetetaan α′(u,v)←α(u,v)+β(u)+β(v)kaikille viivoille(u,v) (α on valepaino) .
      *
-     * 3. Etsitään minimaalinen virittävä 1-puu S′ valepainoja α′(u,v) käyttäen.
+     * 3. Etsitään minimaalinen virittävä 1-puu S valepainoja α′(u,v) käyttäen.
      * Jos tällaista ei löydy, ei myöskään Hamiltonin piiriä löydy ja voidaan
      * lopettaa.
      *
-     * 4. Jos S′ on piiri, niin tulostetaan minimaalinen Hamiltonin piiri H = S′
+     * 4. Jos S′ on piiri, niin tallennetaan minimaalinen Hamiltonin piiri H = S′
      * ja lopetetaan.
      *
      * 5. Jos S′ ei ole piiri ja S′:sta laskettu alaraja on kasvanut K
      * iteraatiokierroksen aikana, niin asetetaan β(v) ← β(v) + dS′ (v) − 2
      * jokaiselle pisteelle v ja mennään kohtaan 2. (K on etukäteen kiinnitetty
-     * iteraatiokierrosten maksimimäärä.)
+     * iteraatiokierrosten maksimimäärä, dS(v) on solmun asteluku virittävässä l-puussa S.)
      *
      * 6. Jos S′:sta laskettu alaraja ei ole kasvanut K:n iteraatiokierroksen
      * aikana, lopetetaan ja tulostetaan ko. alaraja.
@@ -66,7 +73,7 @@ public class KarpHeld extends ReitinEtsija {
     public boolean etsiLyhinReitti() {
         int n = 0;
         double alaraja = 0;
-        while (n < 100000) { // Testataan, onko alaraja kasvanut K iteraatiokierroksen aikana (K=1000000)
+        while (n < iteraatiot) {
             paivitaValepainot(); //2
             Prim prim = new Prim(valepainot); //3
             asteet = new int[solmut.length];
@@ -91,14 +98,14 @@ public class KarpHeld extends ReitinEtsija {
     }
 
     // Päivittää laskennalliset solmupainot.
-    private void paivitaSolmupainot() {
+    public void paivitaSolmupainot() {
         for (int i = 0; i < solmupainot.length; i++) {
             solmupainot[i] = solmupainot[i] + asteet[i] - 2;
         }
     }
 
     // Rakentaa lyhimmästä reitistä pinon ja tallentaa sen lyhinReitti-muuttujaan. Näin tuloste saadaan samalla tavalla kuin muista algoritmeista.
-    private void rakennaPino() {
+    public void rakennaPino() {
         this.lyhimmanReitinPituus = 0;
         int v = 0;
         lyhinReitti.push(v);
@@ -120,7 +127,7 @@ public class KarpHeld extends ReitinEtsija {
     }
 
     // laskee ja päivittää alarajan lyhimmän reitin pituudelle.
-    private double laskeAlaraja() {
+    public double laskeAlaraja() {
         double alaraja = 0;
         for (int i = 0; i < kaaret.length; i++) {
             for (int j = 0; j < kaaret.length; j++) {
@@ -136,7 +143,7 @@ public class KarpHeld extends ReitinEtsija {
     }
 
     // laskee onko virittävä l-puu piiri vai ei (virittävä l-puu on piiri täsmälleen silloin jos kaikkien solmujen asteluku on 2)
-    private boolean onkoPiiri() {
+    public boolean onkoPiiri() {
         for (int i = 0; i < asteet.length; i++) {
             if (asteet[i] != 2) {
                 return false;

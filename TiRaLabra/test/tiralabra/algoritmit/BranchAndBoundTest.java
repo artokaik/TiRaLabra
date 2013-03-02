@@ -41,7 +41,7 @@ public class BranchAndBoundTest {
     @Test
     public void BranchAndBoundAntaaSamanTuloksenKuinBruteforce10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(10, 100, 100);
+            XYVerkko verkko = new XYVerkko(9, 100, 100);
             BranchAndBound bab = new BranchAndBound(verkko);
             BruteForce bf = new BruteForce(verkko);
             bab.etsiLyhinReitti();
@@ -54,7 +54,7 @@ public class BranchAndBoundTest {
     @Test
     public void BranchAndBoundPalauttaaKierroksen10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(10, 100, 100);
+            XYVerkko verkko = new XYVerkko(9, 100, 100);
             BranchAndBound bab = new BranchAndBound(verkko);
             bab.etsiLyhinReitti();
             assertTrue(onKierros(bab.getLyhinReitti(),bab.solmut.length));

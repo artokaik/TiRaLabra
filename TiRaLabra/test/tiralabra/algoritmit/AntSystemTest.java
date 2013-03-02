@@ -41,7 +41,7 @@ public class AntSystemTest {
         @Test
     public void AntSystemAntaaSamanTaiVahanHuonommanTuloksenKuinBranchAndBound10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(10, 100, 100);
+            XYVerkko verkko = new XYVerkko(9, 100, 100);
             BranchAndBound bab = new BranchAndBound(verkko);
             AntSystem as = new AntSystem(verkko);
             bab.etsiLyhinReitti();
@@ -54,7 +54,7 @@ public class AntSystemTest {
     @Test
     public void AntSystemPalauttaaKierroksen10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(30, 100, 100);
+            XYVerkko verkko = new XYVerkko(25, 100, 100);
             AntSystem as = new AntSystem(verkko);
             as.etsiLyhinReitti();
             assertTrue(onKierros(as.getLyhinReitti(),as.solmut.length));

@@ -13,6 +13,7 @@ import javax.swing.WindowConstants;
 import tiralabra.algoritmit.AinaLahimpaan;
 import tiralabra.algoritmit.AntSystem;
 import tiralabra.algoritmit.BranchAndBound;
+import tiralabra.algoritmit.BranchAndBound2;
 import tiralabra.algoritmit.BruteForce;
 import tiralabra.algoritmit.KarpHeld;
 import tiralabra.algoritmit.SatunnainenReitti;
@@ -56,7 +57,7 @@ public class Kayttis implements Runnable {
 //        hakija2.etsiLyhinReitti();
 //        container.add(new Piirtoalusta(hakija2, leveys, korkeus));
 
-        BranchAndBound hakija3 = new BranchAndBound(verkko);
+        BranchAndBound2 hakija3 = new BranchAndBound2(verkko);
         hakija3.etsiLyhinReitti();
         container.add(new Piirtoalusta(hakija3, leveys, korkeus));
 

@@ -41,7 +41,7 @@ public class AinaLahimpaanTest {
     @Test
     public void AinaLahimpaanAntaaSamanTaiVahanHuonommanTuloksenKuinBranchAndBound10satunnaisellaVerkolla() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(10, 100, 100);
+            XYVerkko verkko = new XYVerkko(9, 100, 100);
             BranchAndBound bab = new BranchAndBound(verkko);
             AinaLahimpaan al = new AinaLahimpaan(verkko);
             bab.etsiLyhinReitti();
@@ -54,7 +54,7 @@ public class AinaLahimpaanTest {
     @Test
     public void AinaLahimpaanAntaaHuonommanTuloksenKuinKarpHeld10satunnaisellaIsohkollaVerkolla() {
         for (int i = 0; i < 10; i++) {
-            XYVerkko verkko = new XYVerkko(100, 100, 100);
+            XYVerkko verkko = new XYVerkko(50, 100, 100);
             KarpHeld kh = new KarpHeld(verkko);
             AinaLahimpaan al = new AinaLahimpaan(verkko);
             kh.etsiLyhinReitti();
